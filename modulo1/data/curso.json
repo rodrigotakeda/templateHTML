@@ -1,0 +1,30 @@
+{
+    "curso": {
+		"modulo": "",
+        "titulo": "",
+		"loader": false,
+		"template": "custom",
+		"menu": "",
+		"conteudo": {
+			"telas":[
+				{
+					"url": "page1.html",
+					"titulo": "Página 01"
+				},
+				{
+					"url": "quiz.html",
+					"titulo": "Quiz"
+				},
+				{
+					"url": "page2.html",
+					"titulo": "Página 02"
+				},
+				{
+					"url": "page3.html",
+					"titulo": "Página 03"
+				}
+			]
+		}
+	}
+}
+

@@ -1,0 +1,43 @@
+<script src="../assets/libs/jquery-3.5.1.min.js"></script>
+<script src="../assets/libs/jquery-migrate-1.2.1.min.js"></script>
+<script>
+	function Container() {
+		_this = this;
+
+		$.getJSON("data/curso.json", function (data) {
+			carregaData(data);
+		}).fail(function (jqxhr, textStatus, error) {
+			window.location.href = "page1.html";
+		});
+
+		let pageNames = new Array();
+
+		function carregaData(data) {
+			_this.menu = data.curso.menu;
+
+			if (_this.menu == "") {
+				_this.telas = data.curso.conteudo.telas;
+				$.each(_this.telas, function (i, val) {
+					pageNames.push(val.url);
+				});
+
+				if (parent.lms) {
+					telaScorm = parseInt(parent.lms.lesson_location.get());
+					if (isNaN(telaScorm) || telaScorm == '' || telaScorm == null || telaScorm == 'undefined') {
+						window.location.href = "page1.html";
+					} else {
+						window.location.href = pageNames[telaScorm];
+					}
+				} else {
+					window.location.href = "page1.html";
+				}
+			}
+		}
+	}
+
+	// LOAD CONTAINER
+	let container;
+	$(document).ready(function () {
+		container = new Container();
+	});
+</script>

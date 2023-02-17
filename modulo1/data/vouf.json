@@ -1,0 +1,104 @@
+{
+    "questoes": [
+        {
+            "id": 1,
+            "introducao": "",
+            "image": "q1.jpg",
+            "pergunta": "<p>Pergunta para as Alternativas - Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy?</p>",
+            "alternativas": [
+                {
+                    "text": "<p>Opção de Escolha 01.</p>",
+                    "correto": false
+                },
+                {
+                    "text": "<p>Opção de Escolha 02.</p>",
+                    "correto": true
+                },
+                {
+                    "text": "<p>Opção de Escolha 03.</p>",
+                    "correto": false
+                },
+                {
+                    "text": "<p>Opção de Escolha 04.</p>",
+                    "correto": true
+                },
+                {
+                    "text": "<p>Opção de Escolha 05.</p>",
+                    "correto": false
+                },
+                {
+                    "text": "<p>Opção de Escolha 06.</p>",
+                    "correto": true
+                },
+                {
+                    "text": "<p>Opção de Escolha 07.</p>",
+                    "correto": false
+                },
+                {
+                    "text": "<p>Opção de Escolha 08.</p>",
+                    "correto": false
+                }
+            ],
+            "feedbacks": {
+                "correto": "<h3>Muito bem!</h3><p>Resposta correta.</p>",
+                "incorreto": "<h3>Atenção!</h3><p>A influência é uma forma poderosa de construir um ambiente de colaboração e não de competição.</p>"
+            }
+        },
+        {
+            "id": 2,
+            "introducao": "",
+            "image": "q2.jpg",
+            "pergunta": "<p>Pergunta para as Alternativas 2 - Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy?</p>",
+            "alternativas": [
+                {
+                    "text": "<p>Opção de Escolha 01.</p>",
+                    "correto": false
+                },
+                {
+                    "text": "<p>Opção de Escolha 02.</p>",
+                    "correto": true
+                },
+                {
+                    "text": "<p>Opção de Escolha 03.</p>",
+                    "correto": false
+                },
+                {
+                    "text": "<p>Opção de Escolha 04.</p>",
+                    "correto": true
+                }
+            ],
+            "feedbacks": {
+                "correto": "<h3>Muito bem!</h3><p>Resposta correta.</p>",
+                "incorreto": "<h3>Atenção!</h3><p>A influência é uma forma poderosa de construir um ambiente de colaboração e não de competição.</p>"
+            }
+        },
+        {
+            "id": 3,
+            "introducao": "",
+            "image": "q3.jpg",
+            "pergunta": "<p>Pergunta para as Alternativas 3 - Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy?</p>",
+            "alternativas": [
+                {
+                    "text": "<p>Opção de Escolha 01.</p>",
+                    "correto": false
+                },
+                {
+                    "text": "<p>Opção de Escolha 02.</p>",
+                    "correto": true
+                },
+                {
+                    "text": "<p>Opção de Escolha 03.</p>",
+                    "correto": false
+                },
+                {
+                    "text": "<p>Opção de Escolha 04.</p>",
+                    "correto": true
+                }
+            ],
+            "feedbacks": {
+                "correto": "<h3>Muito bem!</h3><p>Resposta correta.</p>",
+                "incorreto": "<h3>Atenção!</h3><p>A influência é uma forma poderosa de construir um ambiente de colaboração e não de competição.</p>"
+            }
+        }
+    ]
+}

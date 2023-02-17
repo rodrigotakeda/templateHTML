@@ -1,0 +1,246 @@
+{
+    "questoes": [
+        {
+            "id": 1,
+            "introducao": "",
+            "image": "q1.jpg",
+            "pergunta": "<p>Exercer influência é uma forma poderosa de, EXCETO:</p>",
+            "alternativas": [
+                {
+                    "text": "<p>Criar aliados.</p>",
+                    "correto": "false"
+                },
+                {
+                    "text": "<p>Construir um ambiente de competição.</p>",
+                    "correto": "true"
+                },
+                {
+                    "text": "<p>Alcançar resultados consistentes.</p>",
+                    "correto": "neutro"
+                }
+            ],
+            "feedbacks": {
+                "correto": "<h3>Muito bem!</h3><p>Resposta correta.</p>",
+                "neutro": "<h3>Talvez</h3><p>Resposta neutra.</p>",
+                "incorreto": "<h3>Atenção!</h3><p>A influência é uma forma poderosa de construir um ambiente de colaboração e não de competição.</p>"
+            }
+        },
+        {
+            "id": 2,
+            "introducao": "",
+            "image": "q2.jpg",
+            "pergunta": "<p>Todas as alternativas a seguir são falsas, EXCETO:</p>",
+            "alternativas": [
+                {
+                    "text": "<p>Influenciar é assumir o comando.</p>",
+                    "correto": "false"
+                },
+                {
+                    "text": "<p>Influenciar é argumentar.</p>",
+                    "correto": "true"
+                },
+                {
+                    "text": "<p>Influência não é só atributo para a liderança.</p>",
+                    "correto": "false"
+                }
+            ],
+            "feedbacks": {
+                "correto": "<h3>Muito bem!</h3><p>Resposta correta.</p>",
+                "neutro": "<h3>Talvez</h3><p>Resposta neutra.</p>",
+                "incorreto": "<h3>Atenção!</h3><p>Influenciar é mais do que argumentar.</p>"
+            }
+        },
+        {
+            "id": 3,
+            "introducao": "",
+            "image": "q3.jpg",
+            "pergunta": "<p>Quais são os quatro componentes da influência?</p>",
+            "alternativas": [
+                {
+                    "text": "<p>Posição de poder, emoção, experiências e sinais não-verbais.</p>",
+                    "correto": "true"
+                },
+                {
+                    "text": "<p>Posição de poder, razão, conhecimento e sinais não-verbais.</p>",
+                    "correto": "false"
+                },
+                {
+                    "text": "<p>Emoção, experiências, conhecimento e sinais verbais.</p>",
+                    "correto": "false"
+                }
+            ],
+            "feedbacks": {
+                "correto": "<h3>Muito bem!</h3><p>Resposta correta.</p>",
+                "incorreto": "<h3>Atenção!</h3><p>Os quatro componentes da influência são: posição de poder, emoção, experiências e sinais não-verbais.</p>"
+            }
+        },
+        {
+            "id": 4,
+            "introducao": "",
+            "image": "q4.jpg",
+            "pergunta": "<p>O autor Roberto Cialdini criou seis táticas de influência. Uma delas é a prova social. O que essa tática define?</p>",
+            "alternativas": [
+                {
+                    "text": "<p>Nos sentimos compelidos a sermos consistentes quando alguém fez isso por nós no passado.</p>",
+                    "correto": "false"
+                },
+                {
+                    "text": "<p>Somos mais inclinados a concordar com quem gostamos.</p>",
+                    "correto": "false"
+                },
+                {
+                    "text": "<p>Se não sabemos como nos comportar ou reagir, procuramos outros para seguir.</p>",
+                    "correto": "true"
+                }
+            ],
+            "feedbacks": {
+                "correto": "<h3>Muito bem!</h3><p>Resposta correta.</p>",
+                "incorreto": "<h3>Atenção!</h3><p>A tática prova social diz que se não sabemos como nos comportar ou reagir, procuramos outros para seguir.</p>"
+            }
+        },
+        {
+            "id": 5,
+            "introducao": "",
+            "image": "q5.jpg",
+            "pergunta": "<p>Para colocar a influência em prática, entre outras coisas, é importante:</p>",
+            "alternativas": [
+                {
+                    "text": "<p>Cultivar conexões.</p>",
+                    "correto": "true"
+                },
+                {
+                    "text": "<p>Valorizar suas opiniões.</p>",
+                    "correto": "false"
+                },
+                {
+                    "text": "<p>Exercer poder.</p>",
+                    "correto": "false"
+                }
+            ],
+            "feedbacks": {
+                "correto": "<h3>Muito bem!</h3><p>Resposta correta.</p>",
+                "incorreto": "<h3>Atenção!</h3><p>Uma das formas de colocar a influência em prática é cultivar conexões.</p>"
+            }
+        },
+        {
+            "id": 6,
+            "introducao": "",
+            "image": "q6.jpg",
+            "pergunta": "<p>O que NÃO fazer se você quer influenciar pessoas do jeito certo?</p>",
+            "alternativas": [
+                {
+                    "text": "<p>Escutar antes de influenciar.</p>",
+                    "correto": "false"
+                },
+                {
+                    "text": "<p>Usar “eu” demais.</p>",
+                    "correto": "true"
+                },
+                {
+                    "text": "<p>Descontrair enquanto fala.</p>",
+                    "correto": "false"
+                }
+            ],
+            "feedbacks": {
+                "correto": "<h3>Muito bem!</h3><p>Resposta correta.</p>",
+                "incorreto": "<h3>Atenção!</h3><p>Não use “eu” demais. Fale como suas ideias serão benéficas para a Organização e como “nós” veremos valor.</p>"
+            }
+        },
+        {
+            "id": 7,
+            "introducao": "",
+            "image": "q7.jpg",
+            "pergunta": "<p>Tentativas de influência não são ____________ quando você pode contar suas intenções ao seu potencial aliado sem perder seu poder de influência. Qual palavra completa a frase?</p>",
+            "alternativas": [
+                {
+                    "text": "<p>perigosas.</p>",
+                    "correto": "false"
+                },
+                {
+                    "text": "<p>manipuladoras.</p>",
+                    "correto": "true"
+                },
+                {
+                    "text": "<p>mal interpretadas.</p>",
+                    "correto": "false"
+                }
+            ],
+            "feedbacks": {
+                "correto": "<h3>Muito bem!</h3><p>Resposta correta.</p>",
+                "incorreto": "<h3>Atenção!</h3><p>A palavra que completa a frase é “manipuladoras”.</p>"
+            }
+        },
+        {
+            "id": 8,
+            "introducao": "",
+            "image": "q8.jpg",
+            "pergunta": "<p>São características da manipulação, EXCETO:</p>",
+            "alternativas": [
+                {
+                    "text": "<p>É antiética.</p>",
+                    "correto": "false"
+                },
+                {
+                    "text": "<p>Gera reações opostas desagradáveis.</p>",
+                    "correto": "false"
+                },
+                {
+                    "text": "<p>Pode ser praticada por todos sem causar danos.</p>",
+                    "correto": "true"
+                }
+            ],
+            "feedbacks": {
+                "correto": "<h3>Muito bem!</h3><p>Resposta correta.</p>",
+                "incorreto": "<h3>Atenção!</h3><p>A alternativa correta é a C.</p>"
+            }
+        },
+        {
+            "id": 9,
+            "introducao": "",
+            "image": "q9.jpg",
+            "pergunta": "<p>O que é <em>nudging</em>?</p>",
+            "alternativas": [
+                {
+                    "text": "<p>Comportamento para motivação e influência de resultados.</p>",
+                    "correto": "false"
+                },
+                {
+                    "text": "<p>Forma de influenciar as tomadas de decisão sem manipulação.</p>",
+                    "correto": "false"
+                },
+                {
+                    "text": "<p>Vários métodos para influenciar as ações das pessoas por meio do conhecimento específico.</p>",
+                    "correto": "true"
+                }
+            ],
+            "feedbacks": {
+                "correto": "<h3>Muito bem!</h3><p>Resposta correta.</p>",
+                "incorreto": "<h3>Atenção!</h3><p><em>Nuding</em> é o nome dado a vários métodos para influenciar as ações das pessoas por meio do conhecimento científico.</p>"
+            }
+        },
+        {
+            "id": 10,
+            "introducao": "",
+            "image": "q10.jpg",
+            "pergunta": "<p>Qual é o mais sutil dos componentes da influência?</p>",
+            "alternativas": [
+                {
+                    "text": "<p>Posição de poder.</p>",
+                    "correto": "false"
+                },
+                {
+                    "text": "<p>Emoção.</p>",
+                    "correto": "false"
+                },
+                {
+                    "text": "<p>Sinais não-verbais.</p>",
+                    "correto": "true"
+                }
+            ],
+            "feedbacks": {
+                "correto": "<h3>Muito bem!</h3><p>Resposta correta.</p>",
+                "incorreto": "<h3>Atenção!</h3><p>A alternativa correta é a C.</p>"
+            }
+        }
+    ]
+}
