@@ -1,0 +1,379 @@
+/*******************************
+Loading
+********************************/
+.loadingContent {
+    background: $cor1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 990;
+
+    // SPINNER
+    .loaderSpinner {
+        .loadingio-spinner {
+            width: 160px;
+            height: 160px;
+            display: inline-block;
+            overflow: hidden;
+            background: none;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            @include transform(translate(-50%, -50%));
+            
+            .spinner {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                transform: translateZ(0) scale(1);
+                backface-visibility: hidden;
+                transform-origin: 0 0; /* see note above */
+            }
+        
+        }
+
+        .spinner div { box-sizing: border-box!important }
+        .spinner > div {
+            position: absolute;
+            width: 114px;
+            height: 114px;
+            top: 22px;
+            left: 22px;
+            border-radius: 50%;
+            border: 12px solid #000;
+            border-color: #3a627a transparent #3a627a transparent;
+            animation: spinnerLoader 2.5s linear infinite;
+        }
+        
+        .spinner > div:nth-child(2), .spinner > div:nth-child(4) {
+            width: 84px;
+            height: 84px;
+            top: 37px;
+            left: 37px;
+            animation: spinnerLoader 2.5s linear infinite reverse;
+        }
+        .spinner > div:nth-child(2) {
+            border-color: transparent #009da3 transparent #009da3
+        }
+        .spinner > div:nth-child(3) { border-color: transparent }
+        .spinner > div:nth-child(3) div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: rotate(45deg);
+        }
+        .spinner > div:nth-child(3) div:before, .spinner > div:nth-child(3) div:after { 
+            content: "";
+            display: block;
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            top: -12px;
+            left: 38px;
+            background: #3a627a;
+            border-radius: 50%;
+            box-shadow: 0 102px 0 0 #3a627a;
+        }
+        .spinner > div:nth-child(3) div:after {
+            left: -12px;
+            top: 38px;
+            box-shadow: 102px 0 0 0 #3a627a;
+        }
+        .spinner > div:nth-child(4) { border-color: transparent; }
+        .spinner > div:nth-child(4) div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: rotate(45deg);
+        }
+        .spinner> div:nth-child(4) div:before, .spinner > div:nth-child(4) div:after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            top: -12px;
+            left: 24px;
+            background: #009da3;
+            border-radius: 50%;
+            box-shadow: 0 72px 0 0 #009da3;
+        }
+        .spinner > div:nth-child(4) div:after {
+            left: -12px;
+            top: 24px;
+            box-shadow: 72px 0 0 0 #009da3;
+        }
+        
+        .spinner div { box-sizing: content-box; }
+
+        .textoLoader { 
+            width: 250px;
+            height: 30px;
+            text-align: center;
+
+            color: #009da3;
+
+            position:absolute;
+            top: 60%; left:50%;
+        
+            @include transform(translate(-50%,-50%));
+        }
+    }
+
+    .loaderBolinha {
+        position:absolute;
+        top:25%; left:50%;
+        width:100px; height:100px;
+    
+        @include transform(translate(-50%, -50%));
+    
+        hr { 
+            border: 0;
+            border-radius:50%;
+            margin:0;
+            height:40%;
+            width: 40%;
+            position:absolute;
+            animation: bolinhaLoader 2s ease infinite;
+    
+            &:nth-child(1){ background:$cor1; animation-delay:-1.5s; }
+            &:nth-child(2){ background:$cor2; animation-delay:-1s; }
+            &:nth-child(3){ background:$cor3; animation-delay:-.5s; }
+            &:nth-child(4){ background:$cor4; }   
+        }
+    }
+
+    .loaderLapis {
+        position:absolute;
+        top:50%; left:50%;
+        
+        @include transform(translate(-50%, -50%));
+
+        .lapisWrapper {
+            width: 250px;
+            height: 2px;
+            position: absolute;
+            top:50%; left:50%;
+        
+            @include transform(translate(-50%, -50%));
+
+            .objLapis {
+                position: absolute;
+                top: -36px;
+                height: 5px;
+                width: 60px;
+                background: #88ebb5;
+                border-top: 5px solid lighten($color: #88ebb5, $amount: 5%);
+                border-bottom: 5px solid darken($color: #88ebb5, $amount: 5%);
+                box-sizing: content-box;
+    
+                @include transform(translateX(2px) rotate(-40deg));
+                
+                animation: linhaAnimada 5s linear infinite;
+                animation-timing-function: cubic-bezier(.75,.04,0,.86);
+    
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: -5px;
+                    left: -30px;
+                    border-style: solid;
+                    border-color: transparent lighten($color: #fdb94e, $amount: 15%) transparent transparent;
+                    border-width: 8px 15px 7px;
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: -5px;
+                    left: -30px;
+                    border-style: solid;
+                    border-color: transparent #222222 transparent transparent;
+                    border-width: 8px 15px 7px;
+                    @include transform(scale(0.3));
+                }
+    
+                .borracha {
+                    position: absolute;
+                    top: -5px; right: -10px;
+                    height: 5px;
+                    width: 15px;
+                    background: #fd3a57;
+                    border-top: 5px solid lighten($color: #fd3a57, $amount: 5%);
+                    border-bottom: 5px solid darken($color: #fd3a57, $amount: 5%);
+                    border-top-right-radius: 6px;
+                    border-bottom-right-radius: 6px;
+                    box-sizing: content-box;
+                }
+            }
+        }
+
+        .textoLoader { 
+            width: 250px;
+            height: 30px;
+            text-align: left;
+
+            position:absolute;
+            top:5px; left:50%;
+        
+            @include transform(translateX(-50%));
+        }
+
+        .linhaLapis {
+            width: 250px;
+            height: 2px;
+            background: #222222;
+            position: absolute;
+            top:50%; left:50%;
+        
+            @include transform(translate(-50%, -50%));
+
+            &::before {
+                content: '';
+                position: absolute;
+                top:0; left:0;
+                width: 100%;
+                height: 100%;
+                background: #fdb94e;
+                animation: linhaAnimada 5s linear infinite;
+                animation-timing-function: cubic-bezier(.75,.04,0,.86);
+            }
+        }
+    }
+
+    .loaderPanela {
+        width: 180px;
+        height: 180px;
+        
+        position:absolute;
+        top:50%; left:50%;
+        @include transform(translate(-50%, -50%));
+
+        .loaderFood {
+            position: relative;
+            top: 10%;
+            left: 0;
+            z-index: -1;
+            width: 60%;
+            height: 45%;
+            border: 10px solid transparent;
+            border-bottom: 10px solid #d99727;
+            border-radius: 50%;
+            animation: animaFood 2s infinite;
+            animation-timing-function: ease-in-out;
+        }
+
+        .loaderPan {
+            display: flex;
+            width: 100%;
+            animation: animaPan 2s infinite;
+            animation-timing-function: ease-in-out;
+
+            .Pan {
+                width: 60%;
+                height: 20px;
+                background: #408f80;
+                border-bottom-right-radius: 20px;
+                border-bottom-left-radius: 20px;
+            }
+
+            .Cabo {
+                width: 40%;
+                height: 10px;
+                background: #ca5a49;
+                border-top-right-radius: 10px;
+                border-top-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+                border-bottom-left-radius: 10px;
+            }
+        }
+
+        .sombraPan {
+            position: relative;
+            top: 15%;
+            left: 15%;
+            width: 30%;
+            height: 8px;
+            background: #d3d3d3;
+            border-radius: 20px;
+            animation: animaSombra 2s infinite;
+        }
+    }
+
+    @media #{$bp-phone} { 
+        .loaderLapis {
+            width: 100%;
+
+            .lapisWrapper { width: 50%; }
+            .textoLoader { width: 50%; }
+            .linhaLapis { width: 50%; }
+        }
+    }
+}
+
+// SPINNER
+@keyframes spinnerLoader {
+    0% { transform: rotate(0) }
+    100% { transform: rotate(360deg) }
+}
+
+// BOLINHA
+@keyframes bolinhaLoader {
+    0%   { @include transform(translate(0)); }
+    25%  { @include transform(translate(160%)); }
+    50%  { @include transform(translate(160%, 160%)); }
+    75%  { @include transform(translate(0, 160%)); }
+    100% { @include transform(translate(0)); }
+}
+
+// LINHA LAPIS
+@keyframes linhaAnimada {
+    0%   { left: 0%; }
+    50%  { left: 100%; }
+    100% { left: 0%; }
+}
+
+// ANIMA PANELA
+@keyframes animaFood {
+    0% {
+        width: 10%;
+        @include transform(rotate(0deg));
+    }
+    10% {
+        left: 0%;
+        @include transform(rotate(0deg)); 
+    }
+    20% { left: 20%; width: 0%; }
+    30% { width: 25%; }
+    50% { left: 15%; width: 35%; }
+    70% {
+        left: 18%; width: 30%;
+        @include transform(rotate(240deg));
+    }
+    90% { left: 10%; width: 30%; }
+    100% {
+        left: 25%; width: 2%;
+        @include transform(rotate(360deg));
+    }
+}
+
+@keyframes animaPan {
+    0% {
+        @include transform(rotate(0deg));
+        transform-origin: top right;
+    }
+    10% {
+        @include transform(rotate(-3deg));
+        transform-origin: top right;
+    }
+    50% { @include transform(rotate(15deg)); }
+    100% { @include transform(rotate(0deg)); }
+}
+
+@keyframes animaSombra {
+    0% { width: 30%; }
+    50% { left: 20px; width: 40%; }
+    100% { width: 30%; }
+}

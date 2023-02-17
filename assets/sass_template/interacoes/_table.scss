@@ -1,0 +1,236 @@
+// TABLE GRID
+.table-grid {
+	background-color: $cor1;
+	display: grid;
+	padding: 3px;
+	margin: $espaco-margin auto;
+	grid-template-columns: auto auto auto;
+	grid-gap: 3px;
+
+	.item {
+		background-color: $cor3;
+		color: $cor5;
+		padding: 10px;
+		text-align: center;
+
+		&.item-1 {
+			grid-row-start: 1;
+			grid-row-end: 3;
+		}
+
+		&.item-4,
+		&.item-5 {
+			background-color: $cor5;
+			color: $cor1;
+		}
+	}
+}
+
+// TABLE TAE
+.table-tae {
+	border: solid 3px $cor1;
+	background-color: $cor5;
+	margin: $espaco-margin auto;
+	
+	* { border: solid 3px $cor1; }
+
+	thead { 
+		th {
+			background-color: $cor3;
+			color: $cor5;
+			text-align: center;
+		}
+	}
+
+	tbody { 
+		th {
+			background-color: $cor3;
+			color: $cor5;
+			vertical-align: middle;
+		}
+
+		td {
+			text-align: center;
+			vertical-align: middle;
+		}
+	}
+}
+  
+// FLEX
+.table-flex {
+	display: flex;
+	height: auto;
+	margin: $espaco-margin auto;
+	width: 100%;
+	
+	.div_column {
+		height: 100%;
+		
+		.div_tableRow {
+			width: 100%;
+			display: flex;
+			
+			.div_tableHeader { 
+				background: $cor1;
+				border: solid 2px $cor1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 15px;
+				position: relative;
+				color: #FFF;
+				margin: 0;
+				font-size: 26px;
+				width: 100%;
+				z-index: 2;
+
+				p {
+					color: #FFF;
+				}
+
+				strong { color: #FFF; }
+
+				&:first-child { border-left-width: 4px; }
+				&:last-child { border-right-width: 4px; }
+			}
+
+			.div_tableCol {
+				background: $cor5;
+				padding: 15px;
+				border: solid 2px $cor1;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+
+				p {
+					&:last-child { margin-bottom: 0; }
+				}
+
+				a { 
+					color: $cor-texto;
+					text-decoration: underline;
+				}
+
+				&:first-child { border-left-width: 4px; }
+				&:last-child { border-right-width: 4px; }
+			}
+
+			&:first-child { 
+				.div_tableHeader { border-top-width: 4px; }
+			}
+
+			&:last-child { 
+				.div_tableCol { border-bottom-width: 4px; }
+			}
+		}
+
+		&:first-child { 
+			.div_tableRow {
+				&:first-child { 
+					.div_tableHeader { 
+						&:first-child { border-top-left-radius: $radius-padrao; } 
+						&:last-child { border-top-right-radius: $radius-padrao; }
+					}
+				}
+
+				&:last-child { 
+					.div_tableCol { 
+						&:first-child { border-bottom-left-radius: $radius-padrao; }
+						&:last-child { border-bottom-right-radius: $radius-padrao; }
+					}
+				}
+			}	
+		}
+	}
+
+	@media#{$bp-phone} {
+		flex-direction: column;
+		
+		.div_column {
+			display: block;
+			margin-bottom: $espaco-margin;
+			width: 100%;
+			border: solid 4px $cor3;
+			border-radius: $radius-padrao;
+
+			.div_tableRow {
+				.div_tableHeader { 
+					display: block;
+					border: 0;
+					min-height: inherit;
+					padding: 10px 5px;
+					text-align: center;
+					
+					&::before { height: 60px; }
+
+					h4 { font-size: 21px; }
+					p {
+						margin: 0 0 10px;
+						&:last-child { margin: 0; }
+					}
+
+					&.col6 { 
+						float: inherit;
+						width: 100%;
+					}
+				}
+
+				.div_tableCol {
+					border: 0;
+					padding: 20px;
+
+					p {
+						margin: 0 0 10px;
+
+						&:last-child { margin: 0; }
+
+						&.numero { font-size: 32px; }
+					}
+
+					&.col6 { 
+						display: block; 
+						width: 100%; 
+					}
+				}
+
+				&:first-child { 
+					.div_tableHeader { 
+						border-top-width: 0; 
+						&:first-child { border-top-left-radius: $radius-padrao - 4; } 
+						&:last-child { border-top-right-radius: $radius-padrao - 4; }
+					}
+				}
+
+				&:last-child { 
+					.div_tableCol { 
+						border-bottom-width: 0; 
+						&:first-child { border-bottom-left-radius: $radius-padrao - 4; }
+						&:last-child { border-bottom-right-radius: $radius-padrao - 4; }
+					}
+				}
+			}
+
+			&.div_col1, 
+			&.div_col2 { width: 100%; }
+
+			&:first-child { 
+				.div_tableRow {
+					&:first-child { 
+						.div_tableHeader { 
+							&:first-child { border-top-left-radius: $radius-padrao - 4; } 
+							&:last-child { border-top-right-radius: $radius-padrao - 4; }
+						}
+					}
+	
+					&:last-child { 
+						.div_tableCol { 
+							&:first-child { border-bottom-left-radius: $radius-padrao; }
+							&:last-child { border-bottom-right-radius: $radius-padrao; }
+						}
+					}
+				}	
+			}
+		}
+	}
+}

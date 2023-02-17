@@ -1,0 +1,33 @@
+@import "init/_config";
+@import "../sass_template/init/mixins";
+@import "init/mixins";
+@import "init/_loaders";
+@import "init/_producao";
+@import "init/_animacoes";
+
+// CONTAINER
+@import "container/_header";
+@import "container/_menu";
+@import "container/_footer";
+@import "container/_container";
+@import "container/_textos";
+
+// INTERAÇÕES
+@import "interacoes/_accordion";
+@import "interacoes/_audio";
+@import "interacoes/_blocos";
+@import "interacoes/_botoes";
+@import "interacoes/_cards";
+@import "interacoes/_carrossel";
+@import "interacoes/_flip-card";
+@import "interacoes/_forms";
+@import "interacoes/_images";
+@import "interacoes/_popup";
+@import "interacoes/_quiz";
+@import "interacoes/_table";
+@import "interacoes/_tabs";
+@import "interacoes/_timeline";
+@import "interacoes/_video";
+
+// TEMPLATE
+@import "container/_template";

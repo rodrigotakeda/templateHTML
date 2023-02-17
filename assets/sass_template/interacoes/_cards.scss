@@ -1,0 +1,349 @@
+﻿.card { 
+    background: $cor5;
+    margin: 0 auto $espaco-margin;
+    position: relative;
+    border: 2px solid $cor1;
+    border-radius: 0;
+    overflow: hidden;
+
+    &.card-rounded { border-radius: $radius-padrao; }
+
+    &.card-hover1 {
+        cursor: pointer;
+
+        .img-content {
+            margin: 0 auto;
+            overflow: hidden;
+            position:relative;
+        
+            @include box-shadow(0 0 3px rgba(0,0,0,.3));
+        
+            &::before,
+            &::after {
+                background: rgba($cor1,.5);
+                content: '';
+                height: 50%;
+                width: 100%;
+                position: absolute;
+                top:0;
+                left:0;
+                z-index:1;
+                
+                @include transform-origin(100% 0);
+                @include transform(rotateZ(90deg));
+                @include transition(all .3s ease 0s);
+            }
+        
+            &::after {
+                top:auto;
+                bottom:0;
+                @include transform-origin(0 100%);
+            }
+            
+            .icon { 
+                margin:0; 
+                position:absolute; 
+                padding:7px 5px;
+                background: $cor3;
+                border-radius:0 0 0 $radius-padrao;
+                min-height: 40%;
+                width: 50px;
+                top:-100%;
+                right:0;
+                z-index:2;
+        
+                @include transition(all .3s ease .2s);
+            }
+        
+            .title {
+                color:#fff;
+                margin:0;
+                text-shadow:0 0 1px $cor1;
+                text-transform: uppercase;
+                position:absolute;
+                bottom: 10px;
+                left: 10px;
+                opacity:0;
+                z-index:2;
+        
+                @include transform(scale(0));
+                @include transition(all .5s ease .2s);
+            }
+        
+            img { 
+                height: auto;
+                width: 100%;
+        
+                @include transform(scale(1) rotate(0deg));
+                @include transition(all .3s ease 0s);
+            }
+        }
+    }
+
+    &.card-hover2 { 
+        cursor: pointer;
+
+        .img-content {
+            margin: 0 auto;
+            overflow: hidden;
+            position:relative;
+        
+            &::before {
+                background: rgba($cor1,.5);
+                content: '';
+                width: 0;
+                height: 200%;
+                position: absolute;
+                top: 0;
+                left: -250px;
+                bottom: 0;
+                z-index: 1;
+                
+                @include transform(skewX(-36deg));
+                @include transition(all .5s ease 0s);
+            }
+            
+            img { 
+                height: auto;
+                width: 100%;
+            }
+        
+            .box-content { 
+                width:100%;
+                height:100%; 
+                position:absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                top:0;
+                left:0;
+                z-index: 2;
+        
+                .title {
+                    color:#fff;
+                    margin: 0;
+                    text-shadow:0 0 1px $cor1;
+                    text-transform: uppercase;
+                }
+        
+                @include transform(scale(0));
+                @include transition(all .3s ease 0s);
+            }
+        
+            @media #{$bp-tablet} {
+                &::before { left: -400px; }
+            }
+        }
+    }
+
+    &.card-hover3 { 
+        cursor: pointer;
+
+        .img-content {
+            margin: 0 auto;
+            overflow: hidden;
+            position:relative;
+        
+            &::before,
+            &::after {
+                background: rgba($cor1,.9);
+                content: '';
+                width:100%;
+                height:100%;
+                position:absolute;
+                top:0;
+                left:0;
+                opacity:0;
+                @include transition(all .5s ease 0s);
+            }
+        
+            &::after {
+                background:rgba($cor5,.3);
+                border: 2px solid $cor3;
+                top:0; 
+                left:170%;
+                opacity:1;
+                z-index:1;
+        
+                @include transform(skewX(45deg));
+                @include transition(all 1s ease 0s);
+            }
+            
+            img { 
+                height: auto;
+                width: 100%;
+            }
+        
+            .box-content { 
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width:100%;
+                height: 100%;
+                position:absolute;
+                bottom:-100%;
+                left:0;
+                
+                .title {
+                    color:#fff;
+                    margin: 0;
+                    text-shadow:0 0 1px $cor1;
+                    text-transform: uppercase;
+                }
+                
+                @include transition(all .5s ease 0s);
+            }
+        }
+    }
+
+    &.card-hover4 { 
+        cursor: pointer;
+        
+        .img-content {
+            background: $cor1;
+            margin: 0 auto;
+            overflow: hidden;
+            position:relative;
+        
+            &::before,
+            &::after {
+                border-width:0 180px 140px;
+                border-style:solid;
+                border-color: transparent transparent darken($cor3, 10);
+                content: '';
+                position:absolute;
+                bottom:0;
+                left:50%;
+                z-index:1;
+                
+                @include transform(translate(-55%,100%));
+                @include transition(all .5s 0s cubic-bezier(.6,-.28,.735,.045));
+            }
+        
+            &::after {
+                border-width: 150px 250px;
+                border-color: transparent $cor3 $cor3 darken($cor3, 5);
+                top:25%;
+        
+                @include transform(translate(-60%,100%));
+            }
+            
+            img { 
+                height: auto;
+                width: 100%;
+                opacity:1;
+        
+                @include transform(scale(1.1) translateY(3%));
+                @include transition(all .5s ease 0s);
+            }
+        
+            .box-content { 
+                padding: 20px 0 0 20px;
+                position:absolute;
+                top:0;
+                left:0;
+                opacity:0;
+                z-index:2;
+                
+                .title {
+                    color:#fff;
+                    margin: 0;
+                    text-shadow:0 0 1px $cor1;
+                    text-transform: uppercase;
+                }
+                
+                @include transform(translateY(20%));
+                @include transition(all .5s ease 0s);
+            }
+
+            @media #{$bp-tablet} {
+                &::before { border-width:0 250px 240px; }
+                &::after { border-width:260px 460px; }
+            }
+            @media #{$bp-phone} {
+                &::before { border-width:0 220px 120px; }
+                &::after { border-width:260px 460px; }
+            }
+        }
+    }
+    
+    &:hover {
+        &.card-hover1 {
+            background: darken($cor5, 3);
+
+            .img-content {
+                &::after,
+                &::before { @include transform(rotateZ(0deg)); }
+        
+                .title { 
+                    opacity: 1;
+                    @include transform(scale(1));
+                }
+        
+                .icon { top: 0; }
+        
+                img { 
+                    filter: sepia(80%);
+                    @include transform(scale(1.3) rotate(10deg));
+                }
+            }
+        }
+    
+        &.card-hover2 { 
+            background: darken($cor5, 3);
+
+            .img-content {
+                &::before { width: 200%; }
+        
+                .box-content { 
+                    @include transform(scale(1));
+                }
+                
+                @media #{$bp-tablet} {
+                    &::before { width: 300%; }
+                }
+            }
+        }
+    
+        &.card-hover3 { 
+            background: darken($cor5, 3);
+
+            .img-content {
+                &::before { opacity:1; }
+                &::after { left:-170%; }
+        
+                .box-content { 
+                    bottom: 0%;
+                }
+            }
+        }
+    
+        &.card-hover4 { 
+            background: darken($cor5, 3);
+            
+            .img-content {
+                &::before { 
+                    @include transition(all .4s 0s cubic-bezier(.175,.885,.32,1.275));
+                    @include transform(translate(-55%,0));
+                    transition-delay:.2s;
+                }
+                &::after { 
+                    @include transition(all .4s 0s cubic-bezier(.175,.885,.32,1.275));
+                    @include transform(translate(-60%,0));
+                    transition-delay:0s;
+                }
+        
+                img {
+                    opacity:.2;
+                    @include transform(scale(1.1) translateY(-1%));
+                }
+        
+                .box-content { 
+                    opacity:1;
+                    @include transform(translate(0));
+                    transition-delay:.1s
+                }
+            }
+        }
+    }
+}

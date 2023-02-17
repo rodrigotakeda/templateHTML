@@ -1,0 +1,229 @@
+@charset "utf-8";
+
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  -webkit-overflow-scrolling: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: initial;
+  }
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: $cor-pagina;
+  color: $cor-texto;
+  font-family: $fonte;
+  font-weight: 400;
+  line-height: 1.5;
+  position: relative;
+
+  &.initOverflow {
+    overflow: hidden;
+  }
+}
+
+.overflow {
+  overflow: hidden;
+}
+
+.leitorTela,
+.visuallyhidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+.rounded-border {
+  border-radius: $radius-padrao;
+}
+
+/*******************************
+MARGENS
+********************************/
+$intervalM: 0;
+@while $intervalM <= 250 {
+  .m#{$intervalM} {
+    margin: $intervalM + px !important;
+  }
+  .ml#{$intervalM} {
+    margin-left: $intervalM + px !important;
+  }
+  .ml-#{$intervalM} {
+    margin-left: -$intervalM + px !important;
+  }
+  .mr#{$intervalM} {
+    margin-right: $intervalM + px !important;
+  }
+  .mt#{$intervalM} {
+    margin-top: $intervalM + px !important;
+  }
+  .mt-#{$intervalM} {
+    margin-top: -$intervalM + px !important;
+  }
+  .mb#{$intervalM} {
+    margin-bottom: $intervalM + px !important;
+  }
+
+  .mh#{$intervalM} {
+    margin-left: $intervalM + px !important;
+    margin-right: $intervalM + px !important;
+  }
+  .mv#{$intervalM} {
+    margin-top: $intervalM + px !important;
+    margin-bottom: $intervalM + px !important;
+  }
+
+  .mld#{$intervalM} {
+    margin-left: $intervalM + px !important;
+    @media #{$bp-phone} {
+      margin-left: 0px !important;
+    }
+  }
+  .mrd#{$intervalM} {
+    margin-right: $intervalM + px !important;
+    @media #{$bp-phone} {
+      margin-right: 0px !important;
+    }
+  }
+  .mbd#{$intervalM} {
+    margin-bottom: $intervalM + px !important;
+    @media #{$bp-phone} {
+      margin-bottom: 0px !important;
+    }
+  }
+  .mtd#{$intervalM} {
+    margin-top: $intervalM + px !important;
+    @media #{$bp-phone} {
+      margin-top: 0px !important;
+    }
+  }
+
+  .mlp#{$intervalM} {
+    @media #{$bp-phone} {
+      margin-left: $intervalM + px !important;
+    }
+    margin-left: 0px !important;
+  }
+  .mrp#{$intervalM} {
+    @media #{$bp-phone} {
+      margin-right: $intervalM + px !important;
+    }
+    margin-right: 0px !important;
+  }
+  .mbp#{$intervalM} {
+    @media #{$bp-phone} {
+      margin-bottom: $intervalM + px !important;
+    }
+    margin-bottom: 0px !important;
+  }
+  .mtp#{$intervalM} {
+    @media #{$bp-phone} {
+      margin-top: $intervalM + px !important;
+    }
+    margin-top: 0px !important;
+  }
+
+  $intervalM: $intervalM + 5;
+}
+
+@media #{$bp-phone} {
+  .mpAuto {
+    display: block;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/*******************************
+Paddings
+********************************/
+$intervalP: 0;
+@while $intervalP <= 250 {
+  .p#{$intervalP} {
+    padding: $intervalP + px !important;
+  }
+  .pl#{$intervalP} {
+    padding-left: $intervalP + px !important;
+  }
+  .pr#{$intervalP} {
+    padding-right: $intervalP + px !important;
+  }
+  .pt#{$intervalP} {
+    padding-top: $intervalP + px !important;
+  }
+  .pb#{$intervalP} {
+    padding-bottom: $intervalP + px !important;
+  }
+
+  .pld#{$intervalP} {
+    padding-left: $intervalP + px !important;
+    @media #{$bp-phone} {
+      padding-left: 0px !important;
+    }
+  }
+  .prd#{$intervalP} {
+    padding-right: $intervalP + px !important;
+    @media #{$bp-phone} {
+      padding-right: 0px !important;
+    }
+  }
+  .pbd#{$intervalP} {
+    padding-bottom: $intervalP + px !important;
+    @media #{$bp-phone} {
+      padding-bottom: 0px !important;
+    }
+  }
+  .ptd#{$intervalP} {
+    padding-top: $intervalP + px !important;
+    @media #{$bp-phone} {
+      padding-top: 0px !important;
+    }
+  }
+
+  .ph#{$intervalP} {
+    padding-left: $intervalP + px !important;
+    padding-right: $intervalP + px !important;
+  }
+  .pv#{$intervalP} {
+    padding-top: $intervalP + px !important;
+    padding-bottom: $intervalP + px !important;
+  }
+
+  $intervalP: $intervalP + 5;
+}
+
+/* NO SELECT */
+.no_select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}

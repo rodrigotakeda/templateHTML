@@ -1,0 +1,223 @@
+.tabHorizontal {
+    margin: 0 auto $espaco-margin;
+
+    .nav-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+        border-bottom: solid 1px $cor3;
+        position: relative;
+        z-index: 10;
+
+        .nav-item {
+            margin: 0;
+
+            &::before { display: none; }
+
+            .nav-link {
+                background: $cor3;
+                display: block;
+                border-color: $cor2;
+                border-bottom: 0;
+                color: #FFF;
+                margin: 0 2px 0 0;
+                outline: 0;
+                padding: .5rem 1rem;
+                text-decoration: none;
+                
+                @include transition(all .15s ease-in-out);
+
+                &.active {
+                    background: $cor2;
+                    border-color: $cor3;
+                }
+            }
+        }
+
+        &.nav-full {
+            .nav-item {
+                flex: 1;
+                margin: 0 2px 0 0;
+
+                &:last-child { margin: 0; }
+
+                .nav-link {
+                    width: 100%;
+                    margin: 0;
+                    position: relative;
+
+                    &.active {
+                        &::after { 
+                            content: '';
+                            position: absolute;
+                            left: 50%;
+                            bottom: -12px;
+
+                            @include triangle(down, 12px, $cor3);
+                            @include transform(translateX(-50%));
+                        }
+                    }
+                }
+            }   
+        }
+    }
+
+    .tab-content {
+        .tab-pane {
+            background-color: $cor5;
+            border: solid 1px $cor3;
+            border-bottom-left-radius: $radius-padrao;
+            border-bottom-right-radius: $radius-padrao;
+            padding: 1.5em;
+            position: relative;
+        
+            &.active {
+                display: block;
+                transform-origin: center top;
+                @include animation(zoomIn .4s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards);
+            }
+
+            .titleTab { display: none; }
+
+            :last-child { margin-bottom: 0; }
+        }
+    }
+
+    @media #{$bp-phone} {
+        .nav-tabs { display: none; }
+
+        .tab-content {
+            .tab-pane {
+                border-radius: 0;
+                display: block;
+                margin-bottom: $espaco-margin;
+                
+                .titleTab { display: block; }
+            }
+        }
+    }
+}
+
+.tabVertical {
+    display: flex;
+    align-items: center;
+    margin: 0 auto $espaco-margin;
+    
+    .nav-pills {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+        border-right: solid 1px $cor3;
+        position: relative;
+        z-index: 2;
+
+        .nav-link {
+            background: transparent;
+            border-radius: 0;
+            color: #FFF;
+            display: block;
+            margin: 0 0 2px 0;
+            outline: 0;
+            padding: .5rem 1rem;
+            position: relative;
+            text-decoration: none;
+            
+            @include transition(all .4s ease-in-out);
+
+            &:last-child { margin: 0; }
+
+            &::before {
+                background: $cor3;
+                border: solid 1px $cor3;
+                border-right: 0;
+                border-radius: .25em;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+
+                @include transition(all .4s ease-in-out);
+            }
+
+            &.active {
+                &::before { 
+                    background: $cor2;
+                    border-color: $cor2;
+                    border-radius: .25em;
+                    border-top-right-radius: 0.25em;
+                    border-bottom-right-radius: 0.25em;
+                    width: calc(100% + 1.5em); 
+                }
+            }
+        }
+    }
+
+    .tab-content {
+        display: flex;
+        align-self: stretch;
+        position: relative;
+        z-index: 1;
+
+        .tab-pane {
+            background-color: $cor5;
+            border: solid 1px $cor3;
+            border-top-right-radius: $radius-padrao;
+            border-bottom-right-radius: $radius-padrao;
+            padding: 1.5em 1.5em 1.5em 2.5em;
+            position: relative;
+        
+            &.active {
+                display: flex;
+                align-items: center;
+                @include animation(moveLeft .6s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards);
+            }
+
+            :last-child { margin-bottom: 0; }
+        }
+    }
+
+    @media #{$bp-phone} {
+        align-items: flex-start;
+        
+        .nav-pills {
+            max-width: 30%;
+    
+            .nav-link {
+                width: 100%;
+                padding: .5rem;
+                word-wrap: break-word;
+
+                &.active {
+                    &::before { 
+                        width: calc(100% + 1em); 
+                    }
+                }
+            }
+        }
+
+        .tab-content {    
+            .tab-pane {
+                padding: 1em 1.5em;
+                position: relative;
+            
+                &.active {
+                    display: flex;
+                    align-items: center;
+                    @include animation(moveLeft .6s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards);
+                }
+    
+                :last-child { margin-bottom: 0; }
+            }
+        }
+    }
+}

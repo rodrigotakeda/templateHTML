@@ -1,0 +1,21 @@
+header { 
+	background: $cor1;
+	border: none;
+	display: block;
+	height: $altura-header;
+	width: 100%;
+	position: fixed;
+	z-index: 100;
+
+	.row {
+		height: $altura-header;
+		position: relative;
+	}
+
+	@media #{$bp-phone} {
+		select { display: none; }
+	}
+
+	
+	@include transition(all .4s);
+}

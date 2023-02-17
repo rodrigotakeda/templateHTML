@@ -1,0 +1,32 @@
+.blocoPadrao {
+    border-radius: $radius-padrao;
+    margin: 0 auto $espaco-margin;
+    padding: 20px;
+    position: relative;
+    background: linear-gradient(to right, $cor3 0%, $cor4 100%);
+    border: solid 3px $cor2;
+
+    h4 { color: #FFF !important; }
+
+    p {
+        color: #FFF;
+        font-size: 1.2em;
+
+        &:last-child { margin: 0; }
+    }
+
+    &.atencao {  background: linear-gradient(to right, #ebc44f 0%, #ca9b0e 100%); }
+    &.importante {  background: linear-gradient(to right, #2ed3ae 0%, #2eacae 100%); }
+    &.saibaMais { background: linear-gradient(to right, #4ec0ef 0%, #2784c3 100%); }
+
+    @media#{$bp-tablet} { 
+        border: solid 2px $cor2;
+        padding: 15px;
+
+        p { font-size: 1em; }
+
+        &.atencao {  background: linear-gradient(to bottom, #ebc44f 0%, #ca9b0e 100%); }
+        &.importante {  background: linear-gradient(to bottom, #2ed3ae 0%, #2eacae 100%); }
+        &.saibaMais { background: linear-gradient(to bottom, #4ec0ef 0%, #2784c3 100%); }
+    }
+}

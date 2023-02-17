@@ -1,0 +1,30 @@
+// BOOTSTRAP POINTS
+$bp-xlDesktop: "only screen and (min-width: 1141px)";
+$bp-desktop: "only screen and (max-width: 1140px)";
+$bp-tablet: "only screen and (max-width: 992px)";
+$bp-phone: "only screen and (max-width: 576px)";
+
+// CONFIGS
+$altura-header: 100px;
+$espaco-margin: 20px;
+$radius-padrao: 12px;
+
+// CORES
+$cor-texto: #6a6767;
+$cor-pagina: #f5f6fa;
+
+$cor1: #001030;
+$cor2: #004a4c;
+$cor3: #00a075;
+$cor4: #00bd83;
+$cor5: #eaebef;
+
+$svg1: str_slice(#{$cor1}, 2, 7);
+$svg2: str_slice(#{$cor2}, 2, 7);
+$svg3: str_slice(#{$cor3}, 2, 7);
+$svg4: str_slice(#{$cor4}, 2, 7);
+
+//--------------------------------
+
+$fonte: Arial, Helvetica, sans-serif;
+$fonte2: Verdana, Tahoma, sans-serif;

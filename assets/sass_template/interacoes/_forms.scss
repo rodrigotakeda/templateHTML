@@ -1,0 +1,149 @@
+/* CHECKBOX */ 
+.check-option {
+    position: relative;
+
+    input[type=checkbox]:not(old) {
+        cursor: pointer;
+        margin: 0;
+        opacity: 0;
+        padding: 0;
+        width: 1px; 
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        + label {
+            color: $cor-texto;
+            cursor: pointer;
+            display: inline-block;
+            font-family: $fonte;
+            margin: 0 0 $espaco-margin;
+            max-width: 95%;
+            
+            padding: 0 0 0 35px; 
+            position: relative;
+    
+            &::before {
+                background: $cor5;
+                border: solid 2px $cor3;
+                content: ' ';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 22px;
+                height: 22px;
+
+                @include transition(all 0.4s);
+            }
+        }
+
+        &:checked {
+            + label { 
+                &::before { 
+                    background: $cor3;
+                    border-color: $cor1;
+
+                    @include transform(rotate(90deg));
+                }
+            }
+        } 
+
+        &:disabled {
+            + label { 
+                color: #CCC;
+                cursor: default;
+
+                &::before {
+                    background: rgba(#CCC, 0.2);
+                    border: solid 2px #CCC;
+                }
+            }
+        }
+    }
+}
+
+/* RADIO */ 
+.radio-option {
+    position: relative;
+
+    input[type=radio]:not(old) {
+        cursor: pointer;
+        margin: 0;
+        opacity: 0;
+        padding: 0;
+        width: 1px; 
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        + label {
+            color: $cor-texto;
+            cursor: pointer;
+            display: inline-block;
+            font-family: $fonte;
+            line-height: 22px;
+            margin: 0 0 $espaco-margin;
+            max-width: 95%;
+            
+            padding: 0 0 0 35px; 
+            position: relative;
+    
+            &::before {
+                background: $cor5;
+                border: solid 2px $cor3;
+                border-radius: $radius-padrao;
+                content: ' ';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 22px;
+                height: 22px;
+
+                @include transition(all 0.4s);
+            }
+        }
+
+        &:checked {
+            + label { 
+                &::before { 
+                    background: $cor3;
+                    border-color: $cor1;
+                }
+            }
+        } 
+
+        &:disabled {
+            + label { 
+                color: #CCC;
+                cursor: default;
+                
+                &::before {
+                    background: rgba(#CCC, 0.2);
+                    border: solid 2px #CCC;
+                }
+            }
+        }
+    }
+}
+
+/* TEXT - TEXTAREA */
+.text-box {
+    background: $cor5;
+    border: solid 2px $cor3;
+    color: $cor-texto;
+    margin: 0 0 $espaco-margin;
+    padding: 10px;
+    width: 100%;
+    outline: none;
+    resize: none;
+
+    &::placeholder {
+        color: rgba($cor1, 0.15);
+    }
+
+    &.placeholder {
+        &::placeholder {
+            color: rgba($cor3, 0.55);
+        }   
+    }
+}

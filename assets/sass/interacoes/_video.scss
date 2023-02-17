@@ -1,0 +1,424 @@
+$primary-foreground-color: $cor5; // #fff default
+$primary-hover-color: $cor3;
+$primary-background-color: $cor1; // #2B333F default
+$center-big-play-button: true; // true default
+$slider-bg-color: $cor3;
+
+// PLAYER VIDEO
+.player {
+  border-radius: 8px;
+  margin: 0 auto ($espaco-margin * 2);
+  overflow: hidden;
+  padding: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+  width: 100%;
+  z-index: 60;
+
+  @include box-shadow(-5px 5px 15px 0px rgba(147, 147, 147, 0.5));
+
+  .video-js {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+// NARRADA
+.playerNarrada {
+  border-radius: $radius-padrao;
+  margin: 0 auto ($espaco-margin * 2);
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  z-index: 60;
+
+  @include box-shadow(-5px 5px 15px 0px rgba(147, 147, 147, 0.5));
+
+  .narradaContent {
+    padding-bottom: 56.25%;
+    position: relative;
+    width: 100%;
+
+    .video-js {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &.menu {
+    .narradaContent {
+      padding-bottom: 39.35%;
+      width: 70%;
+
+      .video-js {
+        .vjs-big-play-button {
+          $big-play-width: 3em;
+          $big-play-height: 1.5em;
+          line-height: $big-play-height;
+          height: $big-play-height;
+          width: $big-play-width;
+          margin-left: 0;
+          margin-top: 0;
+          left: 0.5em;
+          top: 0.5em;
+        }
+      }
+    }
+
+    .nav-chapter {
+      display: none;
+    }
+
+    .menu-chapter {
+      right: 0;
+      width: 30%;
+
+      .btn-fecharUl {
+        display: none;
+      }
+      .ul-chapter {
+        background: rgba($cor1, 0.9);
+      }
+    }
+  }
+
+  // CHAPTER
+  .menu-chapter {
+    position: absolute;
+    right: -40%;
+    top: 0;
+    height: 100%;
+    width: 40%;
+    z-index: 100;
+
+    &.aberto {
+      right: 0;
+    }
+
+    @include transition(all 0.5s);
+
+    .btn-fecharUl {
+      background-color: $cor1;
+      color: #fff;
+      cursor: pointer;
+      display: block;
+      font-family: $fonte1;
+      font-size: 17px;
+      padding: 8px 20px;
+      position: relative;
+      top: 0;
+      text-transform: uppercase;
+      width: 100% !important;
+      z-index: 101;
+
+      @include transition(all 0.3s);
+
+      &:hover {
+        background-color: lighten($cor1, 10);
+      }
+    }
+
+    .ul-chapter {
+      background: rgba($cor1, 0.85);
+      margin: 0;
+      padding: 0;
+      outline: none;
+      position: relative;
+      height: 100%;
+      width: 100% !important;
+      z-index: 100;
+
+      .btn-chapter {
+        color: #fff;
+        cursor: pointer;
+        font-family: $fonte1;
+        font-size: 16px;
+        list-style: none;
+        margin: 0;
+        padding: 8px 20px;
+        position: relative;
+        width: 100% !important;
+
+        @include transition(all 0.3s);
+
+        &.selected {
+          background-color: $cor3;
+          color: #fff;
+          cursor: default;
+        }
+
+        &:hover {
+          background-color: $cor3;
+          color: #fff;
+        }
+
+        &::before {
+          display: none;
+        }
+
+        &.visto {
+          position: relative;
+
+          &::after {
+            content: "✔";
+            display: flex;
+            align-items: center;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 400;
+            height: 100%;
+            width: 15px;
+            position: absolute;
+            top: 0;
+            left: 10px;
+            z-index: 2;
+          }
+        }
+      }
+    }
+  }
+
+  // BOTAO RETRATIL
+  .nav-chapter {
+    background-color: $cor3;
+    border: none;
+    border-radius: $radius-padrao 0 0 $radius-padrao;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    position: absolute;
+    top: 25px;
+    right: 0;
+    height: 50px;
+    width: 50px;
+    text-decoration: none;
+    z-index: 99;
+
+    &::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23" + $svg2 + "' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z'/%3E%3C/svg%3E");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 75%;
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    @include transition(all 0.5s);
+
+    &.esconde {
+      right: -50px;
+    }
+
+    &:hover {
+      background-color: lighten($color: $cor3, $amount: 5);
+      text-decoration: none;
+    }
+  }
+
+  @media #{$bp-phone} {
+    .menu-chapter {
+      right: -60%;
+      width: 60%;
+
+      .btn-fecharUl {
+        font-size: 14px;
+        padding: 6px 15px;
+      }
+
+      .ul-chapter {
+        .btn-chapter {
+          font-size: 14px;
+          padding: 6px 15px;
+        }
+      }
+    }
+
+    .nav-chapter {
+      top: 15px;
+      height: 40px;
+      width: 40px;
+
+      &.esconde {
+        right: -40px;
+      }
+    }
+
+    &.menu {
+      .narradaContent {
+        padding-bottom: 56.25%;
+        width: 100%;
+      }
+
+      .nav-chapter {
+        display: block;
+      }
+
+      .menu-chapter {
+        height: 100% !important;
+        overflow: scroll;
+        right: -60%;
+        width: 60%;
+
+        &.aberto {
+          right: 0;
+        }
+
+        .btn-fecharUl {
+          display: block;
+        }
+        .ul-chapter {
+          background: rgba($cor1, 0.9);
+        }
+      }
+    }
+  }
+}
+
+// VIDEO-JS
+.video-js {
+  color: $primary-foreground-color;
+  font-size: 10px;
+
+  @include transition(all 0.4s);
+
+  .vjs-control-bar,
+  .vjs-big-play-button,
+  .vjs-menu-button .vjs-menu-content {
+    background-color: $primary-background-color;
+    background-color: rgba($primary-background-color, 0.7);
+  }
+
+  .vjs-control-bar {
+    .vjs-quality-selector {
+      .vjs-menu-button {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+      }
+      .vjs-icon-placeholder {
+        font-family: "VideoJS";
+        font-weight: normal;
+        font-style: normal;
+
+        &::before {
+          content: "\f110";
+        }
+      }
+    }
+  }
+
+  .vjs-quality-changing {
+    .vjs-big-play-button {
+      display: none;
+    }
+
+    .vjs-control-bar {
+      display: flex;
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  // POSTER
+  .vjs-poster {
+    background-color: $cor1;
+    background-size: contain;
+  }
+
+  // TEXT TRACK
+  .vjs-texttrack-settings {
+    display: none;
+  }
+
+  .vjs-text-track-display {
+    .vjs-text-track-cue {
+      div {
+        background: rgba($cor1, 0.8) !important;
+        display: inline-block !important;
+        padding: 6px 12px;
+      }
+    }
+  }
+
+  &:hover {
+    .vjs-big-play-button {
+      background-color: rgba($primary-background-color, 0.6);
+      border-color: $primary-hover-color;
+      color: $primary-hover-color;
+
+      @include transition(all 0.4s);
+    }
+  }
+
+  // PLAY BUTTON
+  .vjs-big-play-button {
+    font-size: 3em;
+    $big-play-width: 5em;
+    $big-play-height: 2.5em;
+    line-height: $big-play-height;
+    height: $big-play-height;
+    width: $big-play-width;
+    border: 0.08em solid $primary-foreground-color;
+    border-radius: 0.3em;
+
+    @if $center-big-play-button {
+      left: 50%;
+      top: 50%;
+      margin-left: -($big-play-width / 2);
+      margin-top: -($big-play-height / 2);
+    } @else {
+      left: 0.5em;
+      top: 0.5em;
+    }
+  }
+
+  // SLIDER
+  .vjs-slider {
+    background-color: $slider-bg-color;
+    background-color: rgba($slider-bg-color, 0.5);
+  }
+
+  .vjs-volume-level,
+  .vjs-play-progress,
+  .vjs-slider-bar {
+    background: $primary-foreground-color;
+  }
+
+  // PROGRESS
+  .vjs-load-progress {
+    background: lighten($slider-bg-color, 25%);
+    background: rgba($slider-bg-color, 0.5);
+
+    div {
+      background: lighten($slider-bg-color, 50%);
+      background: rgba($slider-bg-color, 0.75);
+    }
+  }
+
+  @media #{$bp-phone} {
+    // PLAY BUTTON
+    .vjs-big-play-button {
+      line-height: 1.5em;
+      height: 1.5em;
+      width: 3em;
+
+      @if $center-big-play-button {
+        margin-left: -(3em / 2);
+        margin-top: -(1.5em / 2);
+      }
+    }
+  }
+}

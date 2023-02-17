@@ -1,0 +1,679 @@
+/************************************************************************/
+/*
+TIMELINE
+*/
+
+// TIMELINE SCROLL
+.scrollTimeline {
+    position: relative;
+    margin: $espaco-margin 0;
+    counter-reset: scroll-number;
+
+    .item-scroll {
+        counter-increment: line-number;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        position: relative;
+        min-height: 140px;
+        margin-bottom: $espaco-margin;
+        width: 100%;
+
+        .image-timeline {
+            background: $cor1;
+            height: 140px;
+            width: 140px;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            @include transform-origin(0 0);
+            z-index: 11;
+
+            &::before {
+                color: $cor5;
+                font-size: 3em;
+                content: counter(line-number);
+                position: absolute;
+                z-index: 11;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        .content-timeline { 
+            background: $cor3;
+            border-radius: $radius-padrao 0 0 $radius-padrao;
+            padding: 1em 2.5em 1em 1em;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            height: auto;
+            min-height: 140px;
+            width: calc(50% - 60px);
+            @include transform-origin(0 0);
+            z-index: 9;
+
+            &::before {
+                background: $cor-pagina;
+                border-radius: 140px 0 0 140px;
+                content: '';
+                position: absolute;
+                top: 50%;
+                right: -75px;
+                width: 100px;
+                height: 140px;
+                @include transform(translateY(-50%));
+            }
+
+            strong { color: #FFF; font-size: 1.5rem; }
+
+            p {
+                color: #FFF;
+
+                &:last-child { margin: 0; }
+            }
+        }
+
+        &.item-reflect {
+            justify-content: flex-end;
+            
+            .content-timeline { 
+                border-radius: 0 $radius-padrao $radius-padrao 0;
+                padding: 1em 1em 1em 2.5em;
+
+                &::before {
+                    border-radius: 0 140px 140px 0;
+                    left: -75px;
+                    right: inherit;
+                }
+            }
+        }
+    }
+
+    @media #{$bp-tablet} {
+        .item-scroll {
+            min-height: 110px;
+    
+            .image-timeline {
+                height: 110px;
+                width: 110px;
+            }
+    
+            .content-timeline { 
+                min-height: 110px;
+                width: calc(50% - 40px);
+    
+                &::before {
+                    border-radius: 110px 0 0 110px;
+                    right: -60px;
+                    width: 90px;
+                    height: 120px;
+                }
+            }
+    
+            &.item-reflect {
+                .content-timeline { 
+                    &::before {
+                        border-radius: 0 110px 110px 0;
+                        left: -60px;
+                        right: inherit;
+                    }
+                }
+            }
+        }
+    
+    }
+
+    @media #{$bp-phone} {
+        .item-scroll {
+            min-height: 80px;
+    
+            .image-timeline {
+                height: 80px;
+                width: 80px;
+                left: inherit;
+                right: 0%;
+
+                @include transform(translate3d(0, 0, 0) scale(1) translate(0%, -50%) !important);
+                
+                &::before { font-size: 2em; }
+            }
+    
+            .content-timeline { 
+                padding: 1em 2.5em 1em 1em;
+                min-height: 80px;
+                width: calc(100% - 80px);
+                
+                &::before {
+                    border-radius: 80px 0 0 80px;
+                    right: -25px;
+                    width: 40px;
+                    height: 80px;
+                }
+            }
+    
+            &.item-reflect {
+                .image-timeline { left: 0%; }
+
+                .content-timeline { 
+                    padding: 1em 1em 1em 2.5em;
+    
+                    &::before {
+                        border-radius: 0 80px 80px 0;
+                        left: -25px;
+                        right: inherit;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// TIMELINE HORIZONTAL
+.horizontalTimeline {
+    position: relative;
+    margin: $espaco-margin 0;
+
+    ul {
+        position: relative;
+        background: none;
+        width: 100%;
+        margin: 0 auto;
+        height: 130px;
+        z-index: 2;
+
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 100%;
+            height: 1px;        
+            border-bottom: 4px solid $cor1;
+
+            @include transform(translateX(-50%));
+        }
+        
+        .group-timeline {
+            display: flex !important;
+            justify-content: space-around;
+            width: 100%;
+
+            li {
+                border: 3px solid $cor1;
+                background: $cor2;
+                border-radius: 50%;
+                margin: auto !important;
+                position: relative;
+                cursor: pointer;
+                width: 94px;
+                height: 94px;
+    
+                &::before, &::after {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    @include transform(translate(-50%,-50%));
+                    @include transition(all 300ms ease-in-out);
+                }
+                &::before {
+                    content: '';
+                    z-index: 1;
+                    background-color: transparent;
+                    border-radius: 50%;
+                    width: 100%;
+                    height: 100%;
+                }
+                &::after {
+                    content: '';
+                    z-index: 0;
+                    background: $cor1;
+                    border: 0;
+                    border-radius: 50%;
+                    width: 50%;
+                    height: 50%;
+                    opacity: 0;
+                }
+    
+                span {
+                    position: absolute;
+                    color: $cor5;
+                    z-index: 5;
+                    top: 50%;
+                    left: calc(50% + 1px);
+                    font-family: $fonte;
+                    font-size: 30px;
+                    @include transform(translate(-50%,-50%));
+                    @include transition(all 500ms ease-in-out);
+    
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        bottom: -58px;
+                        left: 50%;
+                        width: 3px;
+                        height: 35px;
+                        background: $cor1;
+                        @include transform(translateX(-50%));
+                    }
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -63px;
+                        left: 50%;
+                        // width: 80px;
+                        width: 0;
+                        height: 8px;
+                        border-radius: 8px;
+                        opacity: 0;
+                        background: $cor3;
+                        @include transform(translateX(-50%));
+                        @include transition(all 300ms ease-in-out);
+                    }
+                }
+    
+                &:hover {
+                    background: #FFF;
+                    border: 3px solid $cor3;
+                    @include transition(all 500ms ease-in-out);
+    
+                    &::after {
+                        width: 85%;
+                        height: 85%;
+                        opacity: 1;
+                        @include transition(all 500ms ease-in-out);
+                    }
+    
+                    span { color: #FFF };
+                }
+    
+                &.tab-timeline-selected {
+                    background: #FFF;
+                    background-image: none !important;
+                    border: 3px solid $cor3;
+                    cursor: default;
+    
+                    &::before {
+                        background-color: $cor1;
+                        border: 0; 
+                        border-radius: 50%;
+                        width: calc(100% - 14px);
+                        height: calc(100% - 14px);
+                    }
+                    &::after { opacity: 0; }
+    
+                    span {
+                        color: #FFF;
+    
+                        &::after {
+                            opacity: 1;
+                            width: 60px;
+                        }
+                    }
+                }
+            }
+        }
+    } 
+
+    .contentTimeline {
+        background-color: $cor5;
+        border-bottom-left-radius: $radius-padrao;
+        border-bottom-right-radius: $radius-padrao;
+        padding: 2.5em 2em;
+        position: relative;
+
+        .horizontalTimeline-content {
+            padding: 0;
+            margin: 0 auto;
+            position: relative;
+            z-index: 3;
+            @include transition(all 800ms ease-in-out);
+    
+            &.tab-timeline-disabled {
+                position: absolute;
+                display: flex;
+                top: 30%;
+
+                @include animation(unfoldOut 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards);
+            }
+            &.tab-timeline-active {
+                display: flex;
+                align-items: center;
+                
+                @include animation(unfoldIn 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards);
+            }
+    
+            .horizontalTimeline-title {
+                color: $cor1;
+                font-size: 3em;
+                float: left;
+                padding: 0 10px;
+                margin-right: 15px;
+                display: flex;
+                align-items: center;
+                position: relative;
+            }
+    
+            .horizontalTimeline-text {
+                flex: 1;
+                margin: 0 auto;
+    
+                p {
+                    color: $cor-texto;
+                    font-size: 1.1em;
+
+                    &:last-child { margin: 0;}
+                }
+            }
+        }
+    }
+
+    @media #{$bp-phone} {
+        ul {
+            height: 80px;
+            
+            .group-timeline {
+                li {
+                    border: 2px solid $cor1;
+                    width: 50px;
+                    height: 50px;
+        
+                    span {
+                        font-size: 21px;
+        
+                        &::before {
+                            bottom: -38px;
+                            height: 30px;
+                        }
+                        &::after { bottom: -41px; }
+                    }
+        
+                    &.tab-timeline-selected {
+                        border: 2px solid $cor3;
+
+                        &::before {
+                            width: calc(100% - 8px);
+                            height: calc(100% - 8px);
+                        }
+        
+                        span {
+                            &::after { width: 30px; }
+                        }
+                    }
+                }
+            }
+        }
+        
+        .contentTimeline {
+            padding: 1em;
+    
+            .horizontalTimeline-content {
+                .horizontalTimeline-title { display: none; }
+        
+                .horizontalTimeline-text {
+                    p { font-size: 1em; }
+                }
+            }
+        }
+    }
+}
+
+// TIMELINE VERTICAL
+.verticalTimeline {
+    counter-reset: line-number;
+    position: relative;
+    padding: 20px 0;
+    margin: $espaco-margin 0;
+
+    li {
+        position: relative;
+        counter-increment: line-number;
+        width: 80px;
+        height: 80px;
+        margin: 0 0 $espaco-margin;
+        min-height: 80px;
+        cursor: pointer;
+        padding: 0;
+
+        &::before {
+            color: $cor5;
+            font-size: 1.75em;
+            content: counter(line-number);
+            position: absolute;
+            z-index: 11;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include transition(all 600ms ease-in);
+        }
+
+        span {
+            height: 80px;
+            width: 80px;
+            top: 50%;
+
+            @include transform(translateY(-50%));
+
+            &::before {
+                border: solid 3px $cor1;
+                background:transparent;
+                border-radius: 50%;
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 11;
+                @include transform(translateY(-50%));
+                @include transition(all 600ms ease-in);
+            }
+
+            &::after {
+                background-color: $cor2;
+                border-radius: 50%;
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 80px;
+                height: 80px;
+                z-index: 10;
+                @include transform(translate(-50%, -50%));
+                @include transition(all 600ms ease-in);
+            }
+
+            &.pulse {
+                &::before {
+                    @include animation(pulse 2s ease-in infinite);
+                }
+            }
+        }
+
+        // CONTEUDO
+        .content-timeline {
+            background: $cor3;
+            padding: 0;
+            margin: 0;
+            height: 0;
+            display: table-cell;
+            opacity: 0;
+            width: 100%;
+
+            * {
+                font-size: .01rem;
+                opacity: 0;
+            }
+        }
+
+        &.selected {
+            pointer-events: none;
+            border: 0;
+            display: flex;
+            height: auto;
+            width: 100%;
+
+            &::before { 
+                top: 50%;
+                @include transform(translateY(-50%));
+            }
+
+            span {
+                position: absolute;
+                width: 80px;
+                z-index: 10;
+                
+                &::before { 
+                    background: #FFF;
+                    border: solid 3px $cor3;
+                    z-index: 10;
+                }
+                &::after { 
+                    background-color: $cor1;
+                    height: 60px;
+                    width: 60px;
+                    z-index: 12;
+                }
+
+                &.pulse {
+                    &::before { animation: none; }
+                }
+            }
+
+            .content-timeline {
+                padding: 1em 1em 1em 2.5em;
+                border-top-right-radius: $radius-padrao;
+                border-bottom-right-radius: $radius-padrao;
+
+                opacity: 1;
+                height: auto;
+                width: calc(100% - 70px);
+                left: 70px;
+                position: relative;
+                display: block;
+                z-index: 9;
+
+                @include animation(enterContent .6s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards);
+
+                &::before {
+                    background: $cor-pagina;
+                    border-top-right-radius: 90px;
+                    border-bottom-right-radius: 90px;
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: -20px;
+                    width: 45px;
+                    height: 90px;
+
+                    @include transform(translateY(-50%));
+                    @include transition(all 400ms ease-in);
+                }
+
+                * {
+                    font-size: 1.1rem;
+                    opacity: 1;
+
+                }
+
+                strong { color: #FFF; font-size: 1.5rem; }
+
+                p {
+                    color: #FFF;
+
+                    &:last-child { margin: 0; }
+                }
+            }
+        }
+
+        &:hover {    
+            &::before { z-index: 13; }
+
+            span {
+                z-index: 10;
+
+                &::before { 
+                    background: #FFF; 
+                    border-color: $cor3; 
+                    z-index: 10; 
+                }
+                &::after { 
+                    background-color: $cor1; 
+                    height: 60px; 
+                    width: 60px; 
+                    z-index: 12; 
+                }
+            }
+        }
+    }
+
+    @media #{$bp-phone} {
+        li {
+            width: 50px;
+            height: 50px;
+            min-height: 50px;
+    
+            &::before {
+                font-size: 1.25em;
+                width: 50px;
+                height: 50px;
+            }
+    
+            span {
+                height: 50px;
+                width: 50px;
+    
+                &::before { border: solid 2px $cor1; }
+    
+                &::after { height: 50px; width: 50px; }
+            }
+    
+            &.selected {    
+                span {
+                    width: 50px;
+
+                    &::before {  border: solid 2px $cor3; }
+                    &::after { 
+                        height: 40px;
+                        width: 40px;
+                    }
+                }
+    
+                .content-timeline {
+                    padding: 1em 1em 1em 1.5em;
+                    width: calc(100% - 40px);
+                    left: 40px;
+                    
+                    &::before {
+                        border-top-right-radius: 60px;
+                        border-bottom-right-radius: 60px;
+                        left: -25px;
+                        width: 40px;
+                        height: 60px;
+                    }
+    
+                    * { font-size: 1rem; }
+                    strong { font-size: 1.2rem; }
+                }
+            }
+        }
+    }
+}
+
+@keyframes enterContent {
+    0% { transform:translateX(150%) scaleX(1); }
+    75% { transform:translateX(-15%) scaleX(.9); }
+    100% { transform:translateX(0) scaleX(1); }
+}

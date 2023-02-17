@@ -1,0 +1,180 @@
+.btn-padrao {
+    background: $cor3;
+    border: none;
+    color: #FFF;
+    display: block;
+    font-family: $fonte2;
+    font-size: 1.2em;
+    height: auto;
+    margin: 0 0 $espaco-margin;
+    padding: 8px 25px;
+    position: relative;
+    text-transform: uppercase;
+
+    &.btn-large { width: 360px; max-width: 100%; }
+    &.btn-rounded { border-radius: $radius-padrao; }
+    &.btn-border { 
+        color: $cor3;
+        border: solid 2px $cor3;
+        background: #FFF;
+    }
+
+    @include transition(all 0.5s);
+
+    &:disabled { 
+        pointer-events: none;
+        opacity: .5; 
+    }
+
+    &:hover { 
+        background: darken($color: $cor3, $amount: 10);
+        color: darken($color: #FFFFFF, $amount: 10);
+
+        &.btn-border { 
+            background: darken($color: #FFFFFF, $amount: 10);
+            color: darken($color: $cor3, $amount: 10);
+        }
+    }
+
+    @media#{$bp-phone} {
+		&.btn-large { width: 100%; }
+    }
+}
+
+//////////
+// COLMÉIA
+.colmeia {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto $espaco-margin;
+	overflow: hidden;
+    width: 100%;
+
+    .item {
+		background-color: $cor1;
+        cursor: pointer;
+        display: flex;
+        margin: 0;
+        position: relative;
+        overflow: hidden;
+        outline: 1px solid transparent;
+        width: 100%;
+        
+        -webkit-clip-path: polygon(50% 0, 98% 25%, 98% 75%, 50% 100%, 2% 75%, 2% 25%);
+                clip-path: polygon(50% 0, 98% 25%, 98% 75%, 50% 100%, 2% 75%, 2% 25%);
+
+        @include transition(all 0.4s);
+	
+		&:hover { background-color: $cor3; }
+
+        .desc-item {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            
+            @include transition (all 300ms ease-in-out);
+
+            p {
+                color: #FFF;
+                font-size: 2.5em;
+                position: relative;
+                padding: 0;
+                margin: 0;
+            }
+        }
+	}
+
+	&.i2 {
+		max-width: 40%;
+		padding-bottom: 5%;
+		
+		.item {
+			width: 50%;
+			padding-bottom: 50%;
+			margin-bottom: calc(-10%);
+			
+			&:nth-child(3n+3) {
+				margin-left: 25%;
+			}
+		}
+	}
+
+    &.i3 {
+		max-width: 60%;
+		padding-bottom: 6%;
+		
+		.item {
+			width: 33.333%;
+			padding-bottom: 33.333%;
+			margin-bottom: calc(-7%);
+			
+			&:nth-child(5n+4) {
+				margin-left: 16.666%;
+			}
+		}
+	}
+
+    &.i4 {
+		max-width: 70%;
+		padding-bottom: 5%;
+		
+		.item {
+			width: 25%;
+			padding-bottom: 25%;
+			margin-bottom: calc(-5%);
+			
+			&:nth-child(7n+5) {
+				margin-left: 12.5%;
+			}
+		}
+	}
+
+	&.i5 {
+		max-width: 90%;
+		padding-bottom: 4%;
+		
+		.item {
+			width: 20%;
+			padding-bottom: 20%;
+			margin-bottom: calc(-4%);
+			
+			&:nth-child(9n+6) { margin-left: 10%; }
+		}
+	}
+
+	@media#{$bp-tablet} {
+		&.i3,
+		&.i5 {
+			max-width: 90%;
+			padding-bottom: 10%;
+			
+			.item {
+				width: 33%;
+				padding-bottom: 32%;
+				margin-bottom: calc(10% - 16.666%);
+				
+				&:nth-child(5n+4) { margin-left: 16.666%; }
+				&:nth-child(5n+6) { margin-left: 0; }
+			}
+		}
+		
+		&.i2,
+		&.i4 {
+			max-width: 90%;
+			padding-bottom: 10%;
+			
+			.item {
+				width: 33%;
+				padding-bottom: 33%;
+				margin-bottom: calc(10% - 16.666%);
+
+				&:nth-child(2n+2) { margin-left: 0; }
+				&:nth-child(4n+3) { margin-left: 26.666%; }
+				&:nth-child(4n+1) { margin-left: 10%; }
+			}
+		}
+	}
+}

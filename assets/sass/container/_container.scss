@@ -1,0 +1,53 @@
+$alt-top: $altura-header + 20;
+
+.wrapper {
+    position: relative;
+    padding-top: $alt-top;
+    padding-bottom: $espaco-margin * 2;
+    overflow-x: hidden;
+
+    @media #{$bp-phone} {
+        position: relative;
+    }
+}
+
+/* SVG */
+.divInteractive_Container { 
+    display: block; 
+    margin: $espaco-margin auto;
+    
+    .divInteractive {
+        position: relative; 
+        height: 0; 
+        width: 100%; 
+        padding: 0;
+        padding-bottom: 92%;
+    
+        svg {
+            position: absolute; 
+            height: 100%; 
+            width: 100%; 
+            left: 0; 
+            top: 0;
+        }
+
+        .botao {
+            cursor: pointer;
+            position: relative;
+            opacity: 0;
+            
+            @include transition(all 0.4s);
+
+            &:hover { opacity: 0.25; }
+
+            &.ativo { 
+                cursor: default;
+                &:hover { opacity: 0; }
+            }
+        }
+
+        .feed {
+            display: none;
+        }
+    }
+}

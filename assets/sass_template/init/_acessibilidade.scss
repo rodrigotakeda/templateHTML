@@ -1,0 +1,36 @@
+.using-keyboard {
+  .numberSel,
+  .select {
+    &:focus-within {
+      outline: solid 2px $cor1;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  li,
+  a,
+  .tabHorizontal .nav-tabs.nav-full .nav-item .nav-link,
+  .check-option input[type=checkbox]:not(old)+label,
+  .radio-option input[type=radio]:not(old)+label,
+  .text-box {
+    &:focus {
+      outline: solid 2px  $cor1;
+    }
+  }
+
+  .botaoMenu,
+  .btn-padrao {
+    &:focus {
+      @include transition(none);
+      outline: solid 2px  $cor1;
+
+      &:disabled {
+        outline: solid 2px transparent;
+      }
+    }
+  }
+}

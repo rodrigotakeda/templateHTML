@@ -1,0 +1,219 @@
+
+.botaoMenu {
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	cursor: pointer;
+	display: table;
+	position: relative;
+	height: 40px;
+	width: 40px;
+	z-index: 100;
+
+	&:focus { outline: 0; }
+
+	.tracoBotao {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 30px;
+		@include transform(translate(-50%, -50%) rotate(0deg)); 
+		
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			border-radius: 0;
+			display: block;
+			float: none;
+			top: -10px; 
+			left: 0;
+			width: 100%;
+			height: 3px;
+			background: #FFF;
+
+			@include transform(none);				
+			@include transition(all 600ms cubic-bezier(1,-1.63,.56,1.83));
+		}
+		&::after {
+			top: 10px;
+			left: 0; 
+		}
+		span {
+			position: relative;
+			display: block;
+			width: 100%;
+			height: 3px;
+			background: #FFF;
+			border-radius: 0;
+			opacity: 1;
+
+			@include transform(scaleX(1) rotate(180deg));
+			@include transition(all 600ms cubic-bezier(1,-1.63,.56,1.83));
+		}
+	}
+
+	&.ativo {
+		&::before { opacity: 0; }
+
+		.tracoBotao {
+			&::before {
+				top: 0;
+				@include transform(rotate(-45deg));
+			}
+
+			&::after {
+				top: 0;
+				@include transform(rotate(45deg));
+			}
+
+			span {
+				opacity: 0;
+				@include transform(scaleX(0) rotate(180deg));
+			}
+		}
+	}
+}
+
+nav {
+    width: 100%;
+    position: fixed;
+    top: $altura-header;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    z-index: 99;
+    
+    @include transition(all 500ms ease-in);
+
+    .conteudoMenu {
+        position: relative;
+    
+        ul {
+            counter-reset: numberLi;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                position: relative;
+                text-transform:uppercase;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+
+                &::before {
+                    background: $cor2;
+                    border-bottom: solid 2px $cor4;
+                    content: '';
+                    position: absolute;
+                    width: 100vw;
+                    height: 100%;
+                    left: 50%;
+                    top: 0;
+                    z-index: 10;
+
+                    @include transition(all 0.6s);
+                    @include transform(translateX(-50%));
+                }
+
+                &:hover {
+                    &::before {
+                        background: $cor4;
+                    }
+                }
+
+                &.active {
+                    &::before {
+                        background: $cor4; 
+                        border-color: $cor2;
+                    }
+                    
+                    a { 
+                        cursor: default;
+                        color: #FFF;
+
+                        &::before { 
+                            background: $cor1;
+                            color: #FFF;
+                        }
+                    }
+                }
+
+                a {
+                    color: $cor3;
+                    display: flex;
+                    align-items: center;
+                    font-weight: 700;
+                    font-size: 24px;
+                    
+                    margin: 0;
+                    padding: 12px 0;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    position: relative;
+                    height: 100%;
+                    width: 100%;
+                    z-index: 12;
+                    
+                    @include transition(all 0.4s);
+
+                    &:hover, &:focus { color: #FFF; }
+
+                    &::before {
+                        background: $cor1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #FFF;
+                        font-size: 21px;
+                        width: 30px;
+                        height: 30px;
+                        counter-increment: numberLi;
+                        content: counter(numberLi);
+                        border-radius: 50%;
+                        position: relative;
+                        margin-right: 10px;
+                    }
+
+                    &::after {
+                        background: transparent;
+                        content: '';
+                        position: absolute;
+                        width: 100vw;
+                        height: 100%;
+                        left: 50%;
+                        top: 0;
+                        z-index: 10;
+                        
+                        @include transform(translateX(-50%));
+                    }
+                }
+            }
+        }
+    }
+
+    .menuBG {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 0;
+        background: rgba(#000,0.65);
+        z-index: -1;
+        opacity: 0;
+
+        @include transition(all 500ms ease-in);
+    }
+
+    // Abre e Fecha Menu
+	&.menu-aberto {
+        opacity: 1;
+        height: calc(100% - 140px);
+        overflow-y: visible;
+
+		.menuBG { height: 100vh; opacity: 1; }
+        
+		//.conteudoMenu { height: 100vh; }
+	}
+}

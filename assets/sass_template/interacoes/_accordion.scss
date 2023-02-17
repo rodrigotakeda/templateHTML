@@ -1,0 +1,213 @@
+/* COLLAPSE PANEL */
+.panel-group {
+    margin: $espaco-margin 0;
+    counter-reset: numPanels;
+
+	.panel {
+		background-color: transparent;
+		border: 0;
+		border-radius: 0;
+		margin: 0 auto 5px;
+		padding: 0;
+		position: relative;
+
+		@include box-shadow(none);
+
+		.panel-heading {
+			background-color: rgba(255,255,255,0);
+			border: 0;
+			border-radius: 0;
+			color: #FFF;
+			cursor: pointer;
+			padding: 0;
+            position: relative;
+            z-index: 4;
+
+            &::before { 
+                background: $cor1;
+                display: block;
+                border-radius: $radius-padrao;
+                content: ' ';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+
+                @include transition(all 0.6s);
+            }
+
+            .row {
+                position: relative;
+                height: 100%;
+                z-index: 2;
+
+                &::before { 
+                    content: ' ';
+                    position: absolute;
+                    top: 50%;
+                    right: 2%;
+                    
+                    @include triangle(up, 15px);
+                    @include transform(translateY(-50%));
+                }
+            }
+			
+            &:hover { 
+                &::before { background: lighten($color: $cor1, $amount: 10); }
+            }
+
+            h4 {
+                color: #FFFFFF;
+                display: inline-block;
+                font-size: 1.5em;
+                margin: 0;
+                padding: 20px 0 20px 20px;
+                position: relative;
+
+                @include transition(all 0.6s);
+
+                &::before {
+                    counter-increment: numPanels;
+                    color: #FFF;
+                    content: counter(numPanels)'.';
+                    display: inline-block;
+                    margin-right: 10px;
+                }
+            }
+            
+			&.collapsed { 
+                .row {
+                    &::before { 
+                        @include triangle(down, 15px);
+                    }
+                }
+            }
+        }
+
+		.accordion-collapse {
+            background-color: $cor5;
+            border: 0;
+            border-radius: 0 0 $radius-padrao $radius-padrao;
+            margin-top: -15px;
+            padding: 15px 0 0;
+            position: relative;
+            top: 0;
+            z-index: 3;
+
+			.panel-body {
+				border: 0; 
+				padding: 15px 25px; 
+                position: relative;
+                z-index: 2;
+
+                p {
+                    &:last-child { margin-bottom: 0; }
+                }
+			}
+		}
+	}
+
+    &.full-panel {
+        .panel {    
+            .panel-heading {
+                &::before { 
+                    border-radius: 0 $radius-padrao $radius-padrao 0;
+                    left: inherit;
+                    right: 0;
+                    width: 100vw;
+                }
+
+                h4 { padding: 20px 0; }
+            }
+        }
+
+        &.inverse {
+            .panel {    
+                .panel-heading {
+                    &::before { 
+                        border-radius: $radius-padrao 0 0 $radius-padrao;
+                        left: 0;
+                        right: inherit;
+                        width: 100vw;
+                    }
+
+                    h4 { padding-left: 20px; }
+                }
+            }
+        }
+    }
+
+    @media #{$bp-tablet} {
+        .panel {
+            .panel-heading {
+                .row {
+                    &::before { right: 5%; }
+                }
+            }
+        }
+    }
+
+    @media #{$bp-phone} {
+        .panel {
+            .panel-heading {
+                .row {
+                    &::before { 
+                        right: 5%; 
+                        @include triangle(up, 10px);
+                    }
+                }
+                
+                h4 {
+                    font-size: 1.3em;
+                    padding: 10px 0 10px 15px;
+                }
+
+                &.collapsed { 
+                    .row {
+                        &::before { @include triangle(down, 10px); }
+                    }
+                }
+            }
+    
+            .accordion-collapse {
+                .panel-body { padding: 10px 15px; }
+            }
+        }
+
+        &.full-panel {
+            .panel {    
+                .panel-heading {
+                    h4 { padding: 10px 0; }
+                }
+            }
+        }
+    }
+}
+
+// IOS
+.ios .panel-group {
+	.panel {
+		.panel-heading {
+            .container {
+                &::after { 
+                    right: -3px;
+                    height: 105px;
+                }
+            }
+        }
+	}
+
+	@media #{$bp-phone} {
+		.panel {
+            .panel-heading {
+                .container {
+                    &::after { 
+                        right: -3px;
+                        height: 68px;
+                    }
+                }
+            }
+        }
+	}
+}

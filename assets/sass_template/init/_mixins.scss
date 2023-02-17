@@ -1,0 +1,82 @@
+@mixin border-box {
+            box-sizing: border-box;
+       -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;        
+}
+
+@mixin box-shadow($props) {
+            box-shadow: $props;
+       -moz-box-shadow: $props;
+    -webkit-box-shadow: $props;
+}
+
+@mixin transform($props) {
+            transform: $props;
+        -ms-transform: $props;
+       -moz-transform: $props;
+    -webkit-transform: $props;   
+}
+
+@mixin perspective($props) {
+            perspective: $props;
+       -moz-perspective: $props;
+    -webkit-perspective: $props;        
+}
+
+@mixin transform-origin($props) {
+            transform-origin: $props;
+       -moz-transform-origin: $props;
+    -webkit-transform-origin: $props;        
+}
+
+@mixin transition($props) {
+            transition: $props;
+        -ms-transition: $props;
+       -moz-transition: $props;
+    -webkit-transition: $props;
+}
+
+//animation
+@mixin animation($animation) {
+            animation: $animation;
+         -o-animation: $animation;
+        -ms-animation: $animation;
+       -moz-animation: $animation;
+    -webkit-animation: $animation;
+}
+
+@mixin keyframes($name) {
+    @keyframes #{$name} {
+        @content;
+    }
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+}
+
+// TRIANGLES
+@mixin triangle ($direction: up, $width: 10px, $color: #FFF) {
+    width: 0;
+    height: 0;
+    border: $width solid transparent;
+  
+    @if( $direction == left ) {
+        border-right-color: $color;
+        border-left: 0;
+    } @else if( $direction == right ) {
+        border-left-color: $color;
+        border-right: 0;
+    } @else if( $direction == down ) {
+        border-top-color: $color;
+        border-bottom: 0;
+    } @else {
+        border-bottom-color: $color;
+        border-top: 0;
+    }
+}
