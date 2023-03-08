@@ -99,6 +99,8 @@
                         <div class="feedItems"> </div>
                         <img src="files/images/pointClick.jpg" class="img-fluid mb20" />
 
+
+
                     </div>
 
                 </div>
@@ -2145,7 +2147,7 @@
             },
             {
                 id: 1,
-                topPos: 60,
+                topPos: 80,
                 leftPos: 60,
                 size: 40,
                 title: {
@@ -2180,8 +2182,9 @@
             const wrapperPointClick = document.getElementById(targetId)
             const pointItems = wrapperPointClick.querySelector(".pointItems")
             const pointFeeds = wrapperPointClick.querySelector(".feedItems")
+            const backArea = wrapperPointClick.querySelector(".backArea")
 
-
+            pointItems.addEventListener("click", handleTeste, false);
             pointData.forEach(point => {
                 // buttons
                 let buttonPoint = document.createElement("button");
@@ -2190,7 +2193,7 @@
                 buttonPoint.style.width = `${point.size}px`
                 buttonPoint.style.height = `${point.size}px`
                 buttonPoint.classList.add("buttonPoint")
-                buttonPoint.myParam = point.id;
+                buttonPoint.id = point.id;
                 buttonPoint.addEventListener("click", handlePointClick, false);
                 pointItems.appendChild(buttonPoint);
                 // 
@@ -2199,23 +2202,33 @@
                 let pointFeed = document.createElement("div");
                 pointFeed.classList.add("feedPoint")
 
+
+                pointFeeds.appendChild(pointFeed);
+
+                let getHeight = pointFeed.offsetHeight
+
+
                 if (point.leftPos >= 0 && point.leftPos <= 50) {
                     console.log("joga pra direita")
                     pointFeed.style.left = `calc(${point.leftPos}% + ${point.size}px)`
-                    pointFeed.style.top = `calc(${point.topPos}% - ${point.size / 2}px)`
-
-                    // pointFeed.style.setProperty('left', 'calc(100% + 224px)');
-                    // pointFeed.style.left = `260px`
                 }
 
                 if (point.leftPos > 50 && point.leftPos <= 100) {
                     console.log("joga pra esquerda")
                     pointFeed.style.right = `calc(100% - ${point.leftPos}%)`
-                    pointFeed.style.top = `calc(${point.topPos}% - ${point.size / 2}px)`
                 }
 
 
-                pointFeeds.appendChild(pointFeed);
+                if (point.topPos >= 0 && point.topPos <= 50) {
+                    console.log("joga pra cima")
+                    pointFeed.style.bottom = `calc(100% - ${point.topPos}% - ${(getHeight + point.size) * 2}px)`
+                }
+
+                if (point.topPos > 50 && point.topPos <= 100) {
+                    console.log("joga pra baixo")
+                    pointFeed.style.bottom = `calc(100% - ${point.topPos}% - ${(getHeight - point.size) * 2}px)`
+                }
+
                 //feed title
                 let title = document.createElement(point.title.tag);
                 title.innerHTML = point.title.content;
@@ -2229,13 +2242,43 @@
 
                 });
             });
+
+
+
+
+
+            function handleTeste(evt) {              //  some com todos quando clica fora
+                console.log("aqui")
+                wrapperPointClick.querySelectorAll(".feedPoint").forEach(feedPoint => {
+                    if (feedPoint.classList.contains("active")) {
+                        feedPoint.classList.remove("active")
+
+                    }
+                });
+            }
+            function handlePointClick(evt) {
+                wrapperPointClick.querySelectorAll(".feedPoint").forEach(feedPoint => {
+
+                    feedPoint.classList.remove("active")
+
+                });
+
+                let currentId = evt.currentTarget.id
+                const feedPoint = wrapperPointClick.querySelectorAll(".feedPoint")[currentId]
+                setTimeout(() => {
+
+                    feedPoint.classList.add("active")
+
+                }, 10);
+
+            }
         }
 
 
 
-        function handlePointClick(evt) {
-            console.log(evt.currentTarget.myParam)
-        }
+
+
+
 
 
 
