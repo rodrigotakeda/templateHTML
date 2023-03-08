@@ -95,10 +95,12 @@
             <div class="row">
                 <div class="col">
                     <div class="wrapperPointClick" id="point1">
-                        <div class="pointItems"> </div>
-                        <div class="feedItems"> </div>
-                        <img src="files/images/pointClick.jpg" class="img-fluid mb20" />
+                        <div class="containerPointClick">
+                            <!-- <div class="pointItems"> </div> -->
+                            <!-- <div class="feedItems"> </div> -->
+                            <img src="files/images/pointClick.jpg" class="img-fluid mb20" />
 
+                        </div>
 
 
                     </div>
@@ -2181,10 +2183,14 @@
         function initPointClick(pointData, targetId) {
             const wrapperPointClick = document.getElementById(targetId)
             const pointItems = wrapperPointClick.querySelector(".pointItems")
+            const containerPointClick = wrapperPointClick.querySelector(".containerPointClick")
             const pointFeeds = wrapperPointClick.querySelector(".feedItems")
-            const backArea = wrapperPointClick.querySelector(".backArea")
 
-            pointItems.addEventListener("click", handleTeste, false);
+
+
+
+
+
             pointData.forEach(point => {
                 // buttons
                 let buttonPoint = document.createElement("button");
@@ -2195,15 +2201,16 @@
                 buttonPoint.classList.add("buttonPoint")
                 buttonPoint.id = point.id;
                 buttonPoint.addEventListener("click", handlePointClick, false);
-                pointItems.appendChild(buttonPoint);
+                containerPointClick.prepend(buttonPoint);
                 // 
+
 
                 // feeds
                 let pointFeed = document.createElement("div");
                 pointFeed.classList.add("feedPoint")
 
 
-                pointFeeds.appendChild(pointFeed);
+                containerPointClick.appendChild(pointFeed);
 
                 let getHeight = pointFeed.offsetHeight
 
@@ -2241,35 +2248,52 @@
                     pointFeed.appendChild(textBlocks);
 
                 });
+
+
+                //backArea
+                const backArea = document.createElement("div");
+                backArea.classList.add("backArea")
+
+                containerPointClick.appendChild(backArea);
+
+                backArea.addEventListener("click", handleBackArea, false);
+
+                //
+
+
             });
 
 
 
 
 
-            function handleTeste(evt) {              //  some com todos quando clica fora
-                console.log("aqui")
+            function handleBackArea(evt) {
+                //  some com todos quando clica fora
                 wrapperPointClick.querySelectorAll(".feedPoint").forEach(feedPoint => {
                     if (feedPoint.classList.contains("active")) {
                         feedPoint.classList.remove("active")
-
                     }
                 });
             }
-            function handlePointClick(evt) {
-                wrapperPointClick.querySelectorAll(".feedPoint").forEach(feedPoint => {
 
-                    feedPoint.classList.remove("active")
+            function handlePointClick(evt) {
+                let currentId = evt.currentTarget.id
+                const feedPoint = wrapperPointClick.querySelectorAll(".feedPoint")[currentId]
+                // setTimeout(() => {
+                feedPoint.classList.toggle("active")
+                // }, 10);
+
+                // setTimeout(() => {                   
+                const feedPoints = wrapperPointClick.querySelectorAll(".feedPoint")
+                feedPoints.forEach((feedPoint, id) => {
+                    if (feedPoints[id].classList.contains("active") && currentId != id) {
+                        console.log("aqui")
+                        feedPoint.classList.remove("active")
+                    }
 
                 });
 
-                let currentId = evt.currentTarget.id
-                const feedPoint = wrapperPointClick.querySelectorAll(".feedPoint")[currentId]
-                setTimeout(() => {
-
-                    feedPoint.classList.add("active")
-
-                }, 10);
+                // }, 1);
 
             }
         }
