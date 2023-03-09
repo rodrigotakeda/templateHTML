@@ -94,17 +94,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <div class="wrapperPointClick" id="point1">
-                        <div class="containerPointClick">
-                            <!-- <div class="pointItems"> </div> -->
-                            <!-- <div class="feedItems"> </div> -->
-                            <img src="files/images/pointClick.jpg" class="img-fluid mb20" />
-
-                        </div>
-
-
-                    </div>
-
+                    <div class="wrapperPointClick" id="point1"></div>
                 </div>
             </div>
             <div class="container">
@@ -2125,147 +2115,233 @@
             quizFile: "data/quiz.json"
         });
 
-        const pointClickData1 = [
-
-            {
-                id: 0,
-                topPos: 8,
-                leftPos: 34,
-                size: 40,
-                title: {
-                    tag: "h4",
-                    content: "Titulo 1",
-                },
-                textBlock: [
-                    {
-                        tag: "p",
-                        content: "Conteudo do point 1 parte 1",
-                    },
-                    {
-                        tag: "p",
-                        content: "Conteudo do point 1 parte 2",
-                    },
-                ],
+        const pointClickData1 = {
+            imgSrc: {
+                desk: "pointTesteDesk.png",
+                tablet: "pointTesteTablet.png",
+                mobile: "pointTesteMobile.png",
             },
-            {
-                id: 1,
-                topPos: 80,
-                leftPos: 60,
-                size: 40,
-                title: {
-                    tag: "h4",
-                    content: "Titulo 2",
-                },
-                textBlock: [
-                    {
-                        tag: "p",
-                        content: "Conteudo do point 2 parte 1",
-                    },
-                    {
-                        tag: "p",
-                        content: "Conteudo do point 2 parte 2",
-                    },
-                ],
+
+            size: {
+                desk: 40,
+                tablet: 30,
+                mobile: 30,
             },
-        ]
+            items: [
+                {
+                    id: 0,
+                    topPos: {
+                        desk: 16,
+                        tablet: 13,
+                        mobile: 13.5,
+                    },
+                    leftPos: {
+                        desk: 25,
+                        tablet: 32,
+                        mobile: 42,
+                    },
+                    title: {
+                        tag: "h4",
+                        content: "Titulo 1",
+                        className: "pointTitle"
+                    },
+                    textBlock: [
+                        {
+                            tag: "p",
+                            content: "Conteudo do point 1 parte 1",
+                            className: "pointText"
+                        },
+                        {
+                            tag: "p",
+                            content: "Conteudo do point 1 parte 2",
+                            className: "pointText"
+                        },
+                    ],
+                },
+                {
+                    id: 1,
+                    topPos: {
+                        desk: 39,
+                        tablet: 39,
+                        mobile: 39,
+                    },
+                    leftPos: {
+                        desk: 89,
+                        tablet: 92,
+                        mobile: 91,
+                    },
+
+                    title: {
+                        tag: "h4",
+                        content: "Titulo 2",
+                        className: "pointTitle"
+                    },
+                    textBlock: [
+                        {
+                            tag: "p",
+                            content: "Conteudo do point 2 parte 1",
+                            className: "pointText"
+                        },
 
 
-        // <div class="wrapperPointClick" id="point1">
-        //                 <div class="pointItems"> </div>
-        //                 <img src="files/images/pointClick.jpg" class="img-fluid mb20" />
+                    ],
+                },
+                {
+                    id: 2,
+                    topPos: {
+                        desk: 87,
+                        tablet: 93,
+                        mobile: 93,
+                    },
+                    leftPos: {
+                        desk: 8,
+                        tablet: 3,
+                        mobile: 2,
+                    },
 
-        //             </div>
+                    title: {
+                        tag: "h4",
+                        content: "Titulo 3",
+                        className: "pointTitle"
+                    },
+                    textBlock: [
+                        {
+                            tag: "p",
+                            content: "Conteudo do point 3 parte 1",
+                            className: "pointText"
+                        },
 
 
-        // <button class="btn-padrao btn-rounded">
-        //                             Botão Rounded
-        //                         </button>
+                    ],
+                },
+            ]
+        }
+
+
+
+
         function initPointClick(pointData, targetId) {
             const wrapperPointClick = document.getElementById(targetId)
             const pointItems = wrapperPointClick.querySelector(".pointItems")
-            const containerPointClick = wrapperPointClick.querySelector(".containerPointClick")
+            const containerPointClick = document.createElement("div");
+            containerPointClick.classList.add("containerPointClick")
+            wrapperPointClick.appendChild(containerPointClick);
             const pointFeeds = wrapperPointClick.querySelector(".feedItems")
+            const imgPointClick = document.createElement("img");
+            imgPointClick.classList.add("img-fluid")
+            imgPointClick.classList.add("imgPointClick")
+            imgPointClick.src = `files/images/${pointData.imgSrc.desk}`;
+            containerPointClick.prepend(imgPointClick);
 
 
-
-
-
-
-            pointData.forEach(point => {
+            pointData.items.forEach(point => {
                 // buttons
-                let buttonPoint = document.createElement("button");
-                buttonPoint.style.top = `${point.topPos}%`
-                buttonPoint.style.left = `${point.leftPos}%`
-                buttonPoint.style.width = `${point.size}px`
-                buttonPoint.style.height = `${point.size}px`
+                const buttonPoint = document.createElement("button");
                 buttonPoint.classList.add("buttonPoint")
-                buttonPoint.id = point.id;
                 buttonPoint.addEventListener("click", handlePointClick, false);
-                containerPointClick.prepend(buttonPoint);
-                // 
-
-
+                containerPointClick.appendChild(buttonPoint);
+                buttonPoint.id = point.id;
+                //
+            });
+            pointData.items.forEach(point => {
                 // feeds
-                let pointFeed = document.createElement("div");
+                const pointFeed = document.createElement("div");
                 pointFeed.classList.add("feedPoint")
+                const closeButton = document.createElement("button");
+                closeButton.classList.add("pointCloseButton")
+                const leitorBotao = document.createElement("div");
+                leitorBotao.classList.add("leitorTela")
+                leitorBotao.innerHTML = "fechar"
+                closeButton.appendChild(leitorBotao);
 
+                closeButton.addEventListener("click", handleClose, false);
+                pointFeed.appendChild(closeButton);
 
                 containerPointClick.appendChild(pointFeed);
-
                 let getHeight = pointFeed.offsetHeight
-
-
-                if (point.leftPos >= 0 && point.leftPos <= 50) {
-                    console.log("joga pra direita")
-                    pointFeed.style.left = `calc(${point.leftPos}% + ${point.size}px)`
-                }
-
-                if (point.leftPos > 50 && point.leftPos <= 100) {
-                    console.log("joga pra esquerda")
-                    pointFeed.style.right = `calc(100% - ${point.leftPos}%)`
-                }
-
-
-                if (point.topPos >= 0 && point.topPos <= 50) {
-                    console.log("joga pra cima")
-                    pointFeed.style.bottom = `calc(100% - ${point.topPos}% - ${(getHeight + point.size) * 2}px)`
-                }
-
-                if (point.topPos > 50 && point.topPos <= 100) {
-                    console.log("joga pra baixo")
-                    pointFeed.style.bottom = `calc(100% - ${point.topPos}% - ${(getHeight - point.size) * 2}px)`
-                }
 
                 //feed title
                 let title = document.createElement(point.title.tag);
+                title.classList.add(point.title.className)
                 title.innerHTML = point.title.content;
                 pointFeed.appendChild(title);
 
                 //feed text 
                 point.textBlock.forEach((textBlock, id) => {
                     let textBlocks = document.createElement(textBlock.tag);
+                    textBlocks.classList.add(textBlock.className)
                     textBlocks.innerHTML = textBlock.content;
                     pointFeed.appendChild(textBlocks);
-
                 });
-
-
-                //backArea
-                const backArea = document.createElement("div");
-                backArea.classList.add("backArea")
-
-                containerPointClick.appendChild(backArea);
-
-                backArea.addEventListener("click", handleBackArea, false);
-
                 //
-
-
             });
 
+            if (window.innerWidth > setBreakPoint("md")) {
+                imgPointClick.src = `files/images/${pointData.imgSrc.desk}`;
+                setResponsiveButtonFeed("desk")
+            }
+            else if (
+                window.innerWidth <= setBreakPoint("md") &&
+                window.innerWidth > setBreakPoint("sm")
+            ) {
+                console.log("is tablet")
+                imgPointClick.src = `files/images/${pointData.imgSrc.tablet}`;
+                setResponsiveButtonFeed("tablet")
+            } else if (window.innerWidth <= setBreakPoint("sm")) {
+                console.log("is mobile")
+                imgPointClick.src = `files/images/${pointData.imgSrc.mobile}`;
+                setResponsiveButtonFeed("mobile")
+            }
 
+            const carregaImg = setInterval(() => {
+                if (imgPointClick.offsetHeight != 0) {
+                    wrapperPointClick.style.height = `${imgPointClick.offsetHeight}px`
+                    clearInterval(carregaImg)
+                }
+            }, 10);
 
+            // atualiza no resize
+            function debounceTimeOut(fn, ms) {
+                let timer;
+                return () => {
+                    clearTimeout(timer);
+                    timer = setTimeout(() => {
+                        timer = null;
+                        fn.apply(this, arguments);
+                    }, ms);
+                };
+            }
+            const debouncedHandleResize = debounceTimeOut(function handleResize() {
+                if (window.innerWidth > setBreakPoint("md")) {
+                    imgPointClick.src = `files/images/${pointData.imgSrc.desk}`;
+                    setResponsiveButtonFeed("desk")
+                }
+                else if (
+                    window.innerWidth <= setBreakPoint("md") &&
+                    window.innerWidth > setBreakPoint("sm")
+                ) {
+                    console.log("is tablet")
+                    imgPointClick.src = `files/images/${pointData.imgSrc.tablet}`;
+                    setResponsiveButtonFeed("tablet")
 
+                } else if (window.innerWidth <= setBreakPoint("sm")) {
+                    console.log("is mobile")
+                    imgPointClick.src = `files/images/${pointData.imgSrc.mobile}`;
+                    setResponsiveButtonFeed("mobile")
+                }
+
+                setInterval(() => {
+                    wrapperPointClick.style.height = `${imgPointClick.offsetHeight}px`
+                }, 10);
+
+            }, 500);
+            window.addEventListener("resize", debouncedHandleResize);
+
+            //backArea
+            const backArea = document.createElement("div");
+            backArea.classList.add("backArea")
+            containerPointClick.appendChild(backArea);
+            backArea.addEventListener("click", handleBackArea, false);
 
             function handleBackArea(evt) {
                 //  some com todos quando clica fora
@@ -2279,32 +2355,199 @@
             function handlePointClick(evt) {
                 let currentId = evt.currentTarget.id
                 const feedPoint = wrapperPointClick.querySelectorAll(".feedPoint")[currentId]
-                // setTimeout(() => {
                 feedPoint.classList.toggle("active")
-                // }, 10);
-
-                // setTimeout(() => {                   
                 const feedPoints = wrapperPointClick.querySelectorAll(".feedPoint")
                 feedPoints.forEach((feedPoint, id) => {
                     if (feedPoints[id].classList.contains("active") && currentId != id) {
-                        console.log("aqui")
                         feedPoint.classList.remove("active")
                     }
-
                 });
+            }
 
-                // }, 1);
+            function handleClose() {
+                this.parentElement.classList.remove("active")
+            }
+            function setResponsiveButtonFeed(dispositivo) {
+                if (dispositivo == "desk") {
+                    pointData.items.forEach((point, id) => {
+                        // buttons   
+                        const buttonPoint = containerPointClick.querySelectorAll(".buttonPoint")
+                        buttonPoint[id].style.top = `${point.topPos.desk}%`
+                        buttonPoint[id].style.left = `${point.leftPos.desk}%`
+                        buttonPoint[id].style.width = `${pointData.size.desk}px`
+                        buttonPoint[id].style.height = `${pointData.size.desk}px`
 
+                        // feeds   
+                        const pointFeed = containerPointClick.querySelectorAll(".feedPoint")
+                        let getHeight = pointFeed[id].offsetHeight
+
+                        //ajuste do transform origin e ponta da seta
+                        removeDirectionClasses(pointFeed[id])
+                        if (point.leftPos.desk >= 0 && point.leftPos.desk <= 50 && point.topPos.desk >= 0 && point.topPos.desk <= 50) {
+                            //esquerda e topo
+                            pointFeed[id].classList.add("topLeft")
+                        }
+
+                        if (point.leftPos.desk >= 0 && point.leftPos.desk <= 50 && point.topPos.desk > 50 && point.topPos.desk <= 100) {
+                            //esquerda e baixo                          
+                            pointFeed[id].classList.add("bottomLeft")
+                        }
+
+                        if (point.leftPos.desk > 50 && point.leftPos.desk <= 100 && point.topPos.desk >= 0 && point.topPos.desk <= 50) {
+                            //direita e topo                            
+                            pointFeed[id].classList.add("topRight")
+                        }
+
+                        if (point.leftPos.desk > 50 && point.leftPos.desk <= 100 && point.topPos.desk > 50 && point.topPos.desk <= 100) {
+                            //direita e baixo                            
+                            pointFeed[id].classList.add("bottomRight")
+                        }
+
+                        //ajuste do lado que vai surgir o feed
+                        if (point.leftPos.desk >= 0 && point.leftPos.desk <= 50) {
+                            // console.log("joga pra direita")
+                            pointFeed[id].style.left = `calc(${point.leftPos.desk}% + ${pointData.size.desk}px)`
+                            pointFeed[id].style.right = `initial`
+                        }
+
+                        if (point.leftPos.desk > 50 && point.leftPos.desk <= 100) {
+                            // console.log("joga pra esquerda")
+                            pointFeed[id].style.right = `calc(100% - ${point.leftPos.desk}%)`
+                            pointFeed[id].style.left = `initial`
+                        }
+
+                        if (point.topPos.desk >= 0 && point.topPos.desk <= 50) {
+                            // console.log("joga pra cima")
+                            pointFeed[id].style.bottom = `calc(100% - ${point.topPos.desk}% - ${(getHeight)}px)`
+                            pointFeed[id].style.top = `initial`
+                        }
+
+                        if (point.topPos.desk > 50 && point.topPos.desk <= 100) {
+                            // console.log("joga pra baixo")
+                            pointFeed[id].style.bottom = `calc(100% - ${point.topPos.desk}% - ${pointData.size.desk}px)`
+                            pointFeed[id].style.top = `initial`
+                        }
+                    });
+                }
+
+                if (dispositivo == "tablet") {
+                    pointData.items.forEach((point, id) => {
+                        // buttons     
+                        const buttonPoint = containerPointClick.querySelectorAll(".buttonPoint")
+                        buttonPoint[id].style.top = `${point.topPos.tablet}%`
+                        buttonPoint[id].style.left = `${point.leftPos.tablet}%`
+                        buttonPoint[id].style.width = `${pointData.size.tablet}px`
+                        buttonPoint[id].style.height = `${pointData.size.tablet}px`
+
+                        // feeds   
+                        const pointFeed = containerPointClick.querySelectorAll(".feedPoint")
+                        let getHeight = pointFeed[id].offsetHeight
+
+                        //ajuste do transform origin e ponta da seta
+                        removeDirectionClasses(pointFeed[id])
+                        if (point.leftPos.tablet >= 0 && point.leftPos.tablet <= 50 && point.topPos.tablet >= 0 && point.topPos.tablet <= 50) {
+                            //esquerda e topo
+                            pointFeed[id].classList.add("topLeft")
+                        }
+
+                        if (point.leftPos.tablet >= 0 && point.leftPos.tablet <= 50 && point.topPos.tablet > 50 && point.topPos.tablet <= 100) {
+                            //esquerda e baixo                          
+                            pointFeed[id].classList.add("bottomLeft")
+                        }
+
+                        if (point.leftPos.tablet > 50 && point.leftPos.tablet <= 100 && point.topPos.tablet >= 0 && point.topPos.tablet <= 50) {
+                            //direita e topo                            
+                            pointFeed[id].classList.add("topRight")
+                        }
+
+                        if (point.leftPos.tablet > 50 && point.leftPos.tablet <= 100 && point.topPos.tablet > 50 && point.topPos.tablet <= 100) {
+                            //direita e baixo                            
+                            pointFeed[id].classList.add("bottomRight")
+                        }
+
+
+                        //ajuste do lado que vai surgir o feed
+                        if (point.leftPos.tablet >= 0 && point.leftPos.tablet <= 50) {
+                            // console.log("joga pra direita")
+                            pointFeed[id].style.left = `calc(${point.leftPos.tablet}% + ${pointData.size.tablet}px)`
+                            pointFeed[id].style.right = `initial`
+                        }
+
+                        if (point.leftPos.tablet > 50 && point.leftPos.tablet <= 100) {
+                            // console.log("joga pra esquerda")
+                            pointFeed[id].style.right = `calc(100% - ${point.leftPos.tablet}%)`
+                            pointFeed[id].style.left = `initial`
+                        }
+
+                        if (point.topPos.tablet >= 0 && point.topPos.tablet <= 50) {
+                            // console.log("joga pra cima")
+                            pointFeed[id].style.bottom = `calc(100% - ${point.topPos.tablet}% - ${(getHeight)}px)`
+                            pointFeed[id].style.top = `initial`
+                        }
+
+                        if (point.topPos.tablet > 50 && point.topPos.tablet <= 100) {
+                            // console.log("joga pra baixo")
+                            pointFeed[id].style.bottom = `calc(100% - ${point.topPos.tablet}% - ${pointData.size.tablet}px)`
+                            pointFeed[id].style.top = `initial`
+                        }
+                    });
+                }
+
+                if (dispositivo == "mobile") {
+                    pointData.items.forEach((point, id) => {
+                        // buttons     
+                        const buttonPoint = containerPointClick.querySelectorAll(".buttonPoint")
+                        buttonPoint[id].style.top = `${point.topPos.mobile}%`
+                        buttonPoint[id].style.left = `${point.leftPos.mobile}%`
+                        buttonPoint[id].style.width = `${pointData.size.mobile}px`
+                        buttonPoint[id].style.height = `${pointData.size.mobile}px`
+
+                        // feeds   
+                        const pointFeed = containerPointClick.querySelectorAll(".feedPoint")
+                        let getHeight = pointFeed[id].offsetHeight
+
+                        removeDirectionClasses(pointFeed[id])
+                        pointFeed[id].style.left = `0px`
+                        pointFeed[id].style.top = `0px`
+                        pointFeed[id].style.right = `initial`
+                        pointFeed[id].style.bottom = `initial`
+                    });
+                }
+            }
+            function removeDirectionClasses(feed) {
+                if (feed.classList.contains("topLeft") || feed.classList.contains("topRight") || feed.classList.contains("bottomLeft") || feed.classList.contains("bottomRight")) {
+                    feed.classList.remove("topLeft")
+                    feed.classList.remove("topRight")
+                    feed.classList.remove("bottomLeft")
+                    feed.classList.remove("bottomRight")
+                }
+            }
+            function setBreakPoint(breakPoint) {
+                let innerWidth;
+                switch (breakPoint) {
+                    case "xxl":
+                        return (innerWidth = 1400);
+
+                    case "xl":
+                        return (innerWidth = 1200);
+
+                    case "lg":
+                        return (innerWidth = 992);
+
+                    case "md":
+                        return (innerWidth = 768);
+
+                    case "sm":
+                        return (innerWidth = 576);
+
+                    case "xs":
+                        return (innerWidth = 575);
+
+                    default:
+                        return "erro";
+                }
             }
         }
-
-
-
-
-
-
-
-
 
         window.addEventListener('load', function () {
             initPointClick(pointClickData1, "point1")
