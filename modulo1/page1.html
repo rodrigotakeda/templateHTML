@@ -2368,126 +2368,65 @@
                 this.parentElement.classList.remove("active")
             }
             function setResponsiveButtonFeed(dispositivo) {
-                if (dispositivo == "desk") {
+                if (dispositivo == "desk" || "tablet") {
                     pointData.items.forEach((point, id) => {
                         // buttons   
                         const buttonPoint = containerPointClick.querySelectorAll(".buttonPoint")
-                        buttonPoint[id].style.top = `${point.topPos.desk}%`
-                        buttonPoint[id].style.left = `${point.leftPos.desk}%`
-                        buttonPoint[id].style.width = `${pointData.size.desk}px`
-                        buttonPoint[id].style.height = `${pointData.size.desk}px`
+                        buttonPoint[id].style.top = `${point.topPos[dispositivo]}%`
+                        buttonPoint[id].style.left = `${point.leftPos[dispositivo]}%`
+                        buttonPoint[id].style.width = `${pointData.size[dispositivo]}px`
+                        buttonPoint[id].style.height = `${pointData.size[dispositivo]}px`
 
                         // feeds   
                         const pointFeed = containerPointClick.querySelectorAll(".feedPoint")
                         let getHeight = pointFeed[id].offsetHeight
 
-                        //ajuste do transform origin e ponta da seta
+                        //ajuste do transform origin e ponta da seta                
+
+
                         removeDirectionClasses(pointFeed[id])
-                        if (point.leftPos.desk >= 0 && point.leftPos.desk <= 50 && point.topPos.desk >= 0 && point.topPos.desk <= 50) {
+                        if (point.leftPos[dispositivo] >= 0 && point.leftPos[dispositivo] <= 50 && point.topPos[dispositivo] >= 0 && point.topPos[dispositivo] <= 50) {
                             //esquerda e topo
                             pointFeed[id].classList.add("topLeft")
                         }
 
-                        if (point.leftPos.desk >= 0 && point.leftPos.desk <= 50 && point.topPos.desk > 50 && point.topPos.desk <= 100) {
+                        if (point.leftPos[dispositivo] >= 0 && point.leftPos[dispositivo] <= 50 && point.topPos[dispositivo] > 50 && point.topPos[dispositivo] <= 100) {
                             //esquerda e baixo                          
                             pointFeed[id].classList.add("bottomLeft")
                         }
 
-                        if (point.leftPos.desk > 50 && point.leftPos.desk <= 100 && point.topPos.desk >= 0 && point.topPos.desk <= 50) {
+                        if (point.leftPos[dispositivo] > 50 && point.leftPos[dispositivo] <= 100 && point.topPos[dispositivo] >= 0 && point.topPos[dispositivo] <= 50) {
                             //direita e topo                            
                             pointFeed[id].classList.add("topRight")
                         }
 
-                        if (point.leftPos.desk > 50 && point.leftPos.desk <= 100 && point.topPos.desk > 50 && point.topPos.desk <= 100) {
+                        if (point.leftPos[dispositivo] > 50 && point.leftPos[dispositivo] <= 100 && point.topPos[dispositivo] > 50 && point.topPos[dispositivo] <= 100) {
                             //direita e baixo                            
                             pointFeed[id].classList.add("bottomRight")
                         }
 
                         //ajuste do lado que vai surgir o feed
-                        if (point.leftPos.desk >= 0 && point.leftPos.desk <= 50) {
+                        if (point.leftPos[dispositivo] >= 0 && point.leftPos[dispositivo] <= 50) {
                             // console.log("joga pra direita")
-                            pointFeed[id].style.left = `calc(${point.leftPos.desk}% + ${pointData.size.desk}px)`
+                            pointFeed[id].style.left = `calc(${point.leftPos[dispositivo]}% + ${pointData.size[dispositivo]}px)`
                             pointFeed[id].style.right = `initial`
                         }
 
-                        if (point.leftPos.desk > 50 && point.leftPos.desk <= 100) {
+                        if (point.leftPos[dispositivo] > 50 && point.leftPos[dispositivo] <= 100) {
                             // console.log("joga pra esquerda")
-                            pointFeed[id].style.right = `calc(100% - ${point.leftPos.desk}%)`
+                            pointFeed[id].style.right = `calc(100% - ${point.leftPos[dispositivo]}%)`
                             pointFeed[id].style.left = `initial`
                         }
 
-                        if (point.topPos.desk >= 0 && point.topPos.desk <= 50) {
+                        if (point.topPos[dispositivo] >= 0 && point.topPos[dispositivo] <= 50) {
                             // console.log("joga pra cima")
-                            pointFeed[id].style.bottom = `calc(100% - ${point.topPos.desk}% - ${(getHeight)}px)`
+                            pointFeed[id].style.bottom = `calc(100% - ${point.topPos[dispositivo]}% - ${(getHeight)}px)`
                             pointFeed[id].style.top = `initial`
                         }
 
-                        if (point.topPos.desk > 50 && point.topPos.desk <= 100) {
+                        if (point.topPos[dispositivo] > 50 && point.topPos[dispositivo] <= 100) {
                             // console.log("joga pra baixo")
-                            pointFeed[id].style.bottom = `calc(100% - ${point.topPos.desk}% - ${pointData.size.desk}px)`
-                            pointFeed[id].style.top = `initial`
-                        }
-                    });
-                }
-
-                if (dispositivo == "tablet") {
-                    pointData.items.forEach((point, id) => {
-                        // buttons     
-                        const buttonPoint = containerPointClick.querySelectorAll(".buttonPoint")
-                        buttonPoint[id].style.top = `${point.topPos.tablet}%`
-                        buttonPoint[id].style.left = `${point.leftPos.tablet}%`
-                        buttonPoint[id].style.width = `${pointData.size.tablet}px`
-                        buttonPoint[id].style.height = `${pointData.size.tablet}px`
-
-                        // feeds   
-                        const pointFeed = containerPointClick.querySelectorAll(".feedPoint")
-                        let getHeight = pointFeed[id].offsetHeight
-
-                        //ajuste do transform origin e ponta da seta
-                        removeDirectionClasses(pointFeed[id])
-                        if (point.leftPos.tablet >= 0 && point.leftPos.tablet <= 50 && point.topPos.tablet >= 0 && point.topPos.tablet <= 50) {
-                            //esquerda e topo
-                            pointFeed[id].classList.add("topLeft")
-                        }
-
-                        if (point.leftPos.tablet >= 0 && point.leftPos.tablet <= 50 && point.topPos.tablet > 50 && point.topPos.tablet <= 100) {
-                            //esquerda e baixo                          
-                            pointFeed[id].classList.add("bottomLeft")
-                        }
-
-                        if (point.leftPos.tablet > 50 && point.leftPos.tablet <= 100 && point.topPos.tablet >= 0 && point.topPos.tablet <= 50) {
-                            //direita e topo                            
-                            pointFeed[id].classList.add("topRight")
-                        }
-
-                        if (point.leftPos.tablet > 50 && point.leftPos.tablet <= 100 && point.topPos.tablet > 50 && point.topPos.tablet <= 100) {
-                            //direita e baixo                            
-                            pointFeed[id].classList.add("bottomRight")
-                        }
-
-
-                        //ajuste do lado que vai surgir o feed
-                        if (point.leftPos.tablet >= 0 && point.leftPos.tablet <= 50) {
-                            // console.log("joga pra direita")
-                            pointFeed[id].style.left = `calc(${point.leftPos.tablet}% + ${pointData.size.tablet}px)`
-                            pointFeed[id].style.right = `initial`
-                        }
-
-                        if (point.leftPos.tablet > 50 && point.leftPos.tablet <= 100) {
-                            // console.log("joga pra esquerda")
-                            pointFeed[id].style.right = `calc(100% - ${point.leftPos.tablet}%)`
-                            pointFeed[id].style.left = `initial`
-                        }
-
-                        if (point.topPos.tablet >= 0 && point.topPos.tablet <= 50) {
-                            // console.log("joga pra cima")
-                            pointFeed[id].style.bottom = `calc(100% - ${point.topPos.tablet}% - ${(getHeight)}px)`
-                            pointFeed[id].style.top = `initial`
-                        }
-
-                        if (point.topPos.tablet > 50 && point.topPos.tablet <= 100) {
-                            // console.log("joga pra baixo")
-                            pointFeed[id].style.bottom = `calc(100% - ${point.topPos.tablet}% - ${pointData.size.tablet}px)`
+                            pointFeed[id].style.bottom = `calc(100% - ${point.topPos[dispositivo]}% - ${pointData.size[dispositivo]}px)`
                             pointFeed[id].style.top = `initial`
                         }
                     });
@@ -2497,10 +2436,10 @@
                     pointData.items.forEach((point, id) => {
                         // buttons     
                         const buttonPoint = containerPointClick.querySelectorAll(".buttonPoint")
-                        buttonPoint[id].style.top = `${point.topPos.mobile}%`
-                        buttonPoint[id].style.left = `${point.leftPos.mobile}%`
-                        buttonPoint[id].style.width = `${pointData.size.mobile}px`
-                        buttonPoint[id].style.height = `${pointData.size.mobile}px`
+                        buttonPoint[id].style.top = `${point.topPos[dispositivo]}%`
+                        buttonPoint[id].style.left = `${point.leftPos[dispositivo]}%`
+                        buttonPoint[id].style.width = `${pointData.size[dispositivo]}px`
+                        buttonPoint[id].style.height = `${pointData.size[dispositivo]}px`
 
                         // feeds   
                         const pointFeed = containerPointClick.querySelectorAll(".feedPoint")
